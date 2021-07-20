@@ -10,6 +10,7 @@ import java.util.List;
 public class IProductServiceImpl implements IProductService{
     @Autowired
     IProductRepository iProductRepository;
+
     @Override
     public List<Product> findAll() {
         return iProductRepository.findAll();
@@ -17,7 +18,7 @@ public class IProductServiceImpl implements IProductService{
 
     @Override
     public void save(Product product) {
-    iProductRepository.save(product);
+iProductRepository.save(product);
     }
 
     @Override
@@ -26,17 +27,17 @@ public class IProductServiceImpl implements IProductService{
     }
 
     @Override
-    public void update(int id, Product product) {
-    iProductRepository.update(id,product);
+    public void update(Product product) {
+iProductRepository.update(product);
     }
 
     @Override
-    public void remove(int id) {
-    iProductRepository.remove(id);
+    public void remove(Product product) {
+iProductRepository.remove(product);
     }
 
     @Override
-    public List<Product> finByName(String name) {
+    public Product finByName(String name) {
         return iProductRepository.finByName(name);
     }
 }

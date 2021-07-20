@@ -28,8 +28,8 @@ public class ProductController {
 
     @PostMapping("search")
     public String search(@RequestParam("name") String name, Model model) {
-        List<Product> productList = iProductRepository.finByName(name);
-        if (productList.size()==0) {
+        Product productList = iProductRepository.finByName(name);
+        if (productList==null) {
             model.addAttribute("message", "Tên bạn nhập không tìm thấy");
 
         }else {
@@ -46,8 +46,6 @@ public class ProductController {
     }
     @PostMapping("save")
     public String save(Product product,Model model){
-        List<Product> productList = iProductRepository.findAll();
-        product.setId(productList.size()+1);
         iProductRepository.save(product);
         model.addAttribute("message","Bạn đã insert thành công");
         return "redirect:/";
@@ -59,7 +57,7 @@ public class ProductController {
     }
     @PostMapping("update")
     public String update(Product product){
-        iProductRepository.update(product.getId(),product);
+        iProductRepository.update(product);
         return "redirect:/";
     }
     @GetMapping("{id}/delete")
@@ -69,7 +67,7 @@ public class ProductController {
     }
     @PostMapping("delete")
     public String delete(Product product){
-        iProductRepository.remove(product.getId());
+        iProductRepository.remove(product);
        return "redirect:/";
     }
     @GetMapping("{id}/view")

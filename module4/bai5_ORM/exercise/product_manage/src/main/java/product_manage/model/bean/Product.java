@@ -1,6 +1,14 @@
 package product_manage.model.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name = "product")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double price;
@@ -10,6 +18,13 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, double price, String description, String madeIn) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.madeIn = madeIn;
+    }
+
     public Product(int id, String name, double price, String description, String madeIn) {
         this.id = id;
         this.name = name;
@@ -17,6 +32,7 @@ public class Product {
         this.description = description;
         this.madeIn = madeIn;
     }
+
 
     public int getId() {
         return id;
