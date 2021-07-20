@@ -14,6 +14,8 @@ import java.util.List;
 
 @Controller
 public class MailBoxController {
+    @Autowired
+    IMailBoxRepository iMailBoxRepository;
     @GetMapping("")
     public ModelAndView showUpdateFile() {
         List<String> languageList = new ArrayList<>();
@@ -33,10 +35,6 @@ public class MailBoxController {
         modelAndView.addObject("pageSize", pageSize);
         return modelAndView;
     }
-
-    @Autowired
-    IMailBoxRepository iMailBoxRepository;
-
     @PostMapping("update")
     public ModelAndView showResultUpdate(@ModelAttribute("mailBox") MailBox mailBox) {
 
