@@ -7,7 +7,7 @@ import product_manage.model.repository.IProductRepository;
 
 import java.util.List;
 @Service
-public class IProductServiceImpl implements IProductService{
+public class ProductServiceImpl implements IProductService{
     @Autowired
     IProductRepository iProductRepository;
 

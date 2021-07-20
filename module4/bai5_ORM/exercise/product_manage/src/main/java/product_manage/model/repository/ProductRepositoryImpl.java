@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 import java.util.*;
 
 @Repository
-public class IProductRepositoryImpl implements IProductRepository {
+public class ProductRepositoryImpl implements IProductRepository {
     @Override
     public List<Product> findAll() {
         TypedQuery<Product> product = BaseRepository.entityManager.createQuery("SELECT p FROM product as p", Product.class);
