@@ -7,6 +7,7 @@
 </head>
 <body>
 <a href="/create">Create new blog</a>
+<a href="/show-category">Show Category</a>
 <h1>Blog</h1>
 <table border="1">
   <tr>
@@ -27,7 +28,7 @@
       <td th:text="${blogs.category.name}"></td>
       <td><a th:href="@{/edit/__${blogs.id}__ }">Edit</a></td>
       <td>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:onclick="deleteBlog(${blogs.id})">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteBlog(${blogs.id})|">
           Delete
         </button>
       </a></td>
@@ -37,7 +38,7 @@
 <a th:href="@{/(page=${blogList.number - 1},search=${searchName})}" th:if="${blogList.hasPrevious()}">Previous</a>
 <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>
 <a th:href="@{/(page=${blogList.number + 1},search=${searchName})}" th:if="${blogList.hasNext()}">Next</a>
-<form action="delete">
+<form action="/delete">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -64,7 +65,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
   function deleteBlog(id){
-    document.getElementById(id).value=id;
+    document.getElementById('id').value=id;
   }
 </script>
 </body>

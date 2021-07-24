@@ -69,7 +69,24 @@ public class BlogController {
     @GetMapping("delete")
     public String delete(@RequestParam("id") Integer id){
         iBlogService.delete(id);
-        return "blog/list";
+        return "redirect:/";
+    }
+    @GetMapping("show-category")
+    public String showCategory(@PageableDefault(value = 3) Pageable pageable,
+                           Model model){
+        model.addAttribute("categoryList",iCategoryService.findAll(pageable));
+        return "category/list";
+    }
+    @GetMapping("create-category")
+    public String createCategory(Model model){
+        model.addAttribute("category",new Category());
+        return "category/create";
+    }
+    @PostMapping("create-category")
+    public String createCategory(@ModelAttribute("category") Category category,Model model){
+        model.addAttribute("blog",new Category());
+        iCategoryService.save(category);
+        return "redirect:/";
     }
 
 }
