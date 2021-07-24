@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<a href="/">Back to blog</a>
+<h1>Blog View</h1>
+<table border="1">
+  <tr>
+    <th>STT</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Date</th>
+    <th>Category</th>
+  </tr>
+  <th:block th:each=" blogs , count: ${blogList}">
+    <tr>
+      <td th:text="${count.count * 3}"></td>
+      <td th:text="${blogs.id}"></td>
+      <td th:text="${blogs.name}"></td>
+      <td th:text="${blogs.content}"></td>
+      <td th:text="${blogs.date}"></td>
+      <td th:text="${blogs.category.name}"></td>
+    </tr>
+  </th:block>
+</table>
+</body>
+</html>

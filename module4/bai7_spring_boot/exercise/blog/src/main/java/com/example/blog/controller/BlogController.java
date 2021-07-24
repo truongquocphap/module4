@@ -61,9 +61,7 @@ public class BlogController {
         List<Category> categoryList=iCategoryService.findAll();
         model.addAttribute("blog",iBlogService.findById(blog.getId()));
         model.addAttribute("category",categoryList);
-
         iBlogService.save(blog);
-
         return "blog/edit";
     }
     @GetMapping("delete")
@@ -86,7 +84,35 @@ public class BlogController {
     public String createCategory(@ModelAttribute("category") Category category,Model model){
         model.addAttribute("blog",new Category());
         iCategoryService.save(category);
-        return "redirect:/";
+        return "redirect:/show-category";
     }
-
+    @GetMapping("delete-category")
+    public String deleteCategory(@RequestParam("id") Integer id){
+        iCategoryService.delete(id);
+        return "redirect:/show-category";
+    }
+    @GetMapping("edit-category/{id}")
+    public String createCategory(@PathVariable("id") Integer id, Model model){
+        Category category=iCategoryService.findById(id);
+        model.addAttribute("category",category);
+        return "category/edit";
+    }
+    @PostMapping("edit-category")
+    public String editCategory(@ModelAttribute("category") Category category,Model model){
+        iCategoryService.save(category);
+        return "redirect:/show-category";
+    }
+    @GetMapping("blog-list-category/{id}")
+    public String blogListCategory( @PathVariable("id") Integer id,
+                           Model model){
+        model.addAttribute("blogList",iBlogService.findAllByCategory_Id(id));
+        return "category/blog_list_category";
+    }
+    @GetMapping("view/{id}")
+    public String viewBlog( @PathVariable("id") Integer id ,
+                           Model model){
+        Blog blog=iBlogService.findById(id);
+        model.addAttribute("blogList",blog);
+        return "blog/view";
+    }
 }

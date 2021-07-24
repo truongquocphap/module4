@@ -8,31 +8,33 @@
 <body>
 <a href="/create-category">Create new Category</a>
 <a href="/">List Blog</a>
-<h1>Blog</h1>
+<h1>Blog List</h1>
 <table border="1">
   <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Edit</th>
     <th>Delete</th>
+    <th>Blog List</th>
   </tr>
   <th:block th:each=" category : ${categoryList}">
     <tr>
       <td th:text="${category.id}"></td>
       <td th:text="${category.name}"></td>
-      <td><a th:href="@{/edit/__${category.id}__ }">Edit</a></td>
+      <td><a th:href="@{/edit-category/__${category.id}__ }">Edit</a></td>
       <td>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteBlog(${category.id})|">
           Delete
         </button>
         </td>
+      <td><a th:href="@{/blog-list-category/__${category.id}__ }">Blog List</a></td>
     </tr>
   </th:block>
 </table>
 <a th:href="@{/show-category(page=${categoryList.number - 1})}" th:if="${categoryList.hasPrevious()}">Previous</a>
 <span th:text="${categoryList.number + 1}"></span>/<span th:text="${categoryList.totalPages}"></span>
 <a th:href="@{/show-category(page=${categoryList.number + 1})}" th:if="${categoryList.hasNext()}">Next</a>
-<form action="/delete">
+<form action="/delete-category">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

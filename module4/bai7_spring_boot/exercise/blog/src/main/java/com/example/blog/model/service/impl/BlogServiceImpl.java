@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BlogServiceImpl implements IBlogService {
     @Autowired
@@ -35,5 +37,10 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public void update(Blog blog) {
         iBlogRepository.save(blog);
+    }
+
+    @Override
+    public List<Blog> findAllByCategory_Id(Integer id) {
+        return iBlogRepository.findAllByCategory_Id(id);
     }
 }

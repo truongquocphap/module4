@@ -13,4 +13,5 @@ public interface IBlogService {
     void save(Blog blog);
     void delete(Integer id);
     void update(Blog blog);
+    List<Blog> findAllByCategory_Id(Integer id);
 }
