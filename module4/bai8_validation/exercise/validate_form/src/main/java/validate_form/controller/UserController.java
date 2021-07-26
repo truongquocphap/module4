@@ -25,7 +25,7 @@ public class UserController {
         return "index";
     }
     @PostMapping("/")
-    public String save(@Validated UserDto userDto, BindingResult bindingResult,Model model){
+    public String save(@Validated @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult,Model model){
         if (bindingResult.hasErrors()){
            model.addAttribute("userDto",userDto);
                 return "index";
