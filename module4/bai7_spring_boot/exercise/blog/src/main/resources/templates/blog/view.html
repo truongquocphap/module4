@@ -19,7 +19,7 @@
   </tr>
   <th:block th:each=" blogs , count: ${blogList}">
     <tr>
-      <td th:text="${count.count * 3}"></td>
+      <td th:text="${count.count}"></td>
       <td th:text="${blogs.id}"></td>
       <td th:text="${blogs.name}"></td>
       <td th:text="${blogs.content}"></td>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title></head>
+<body>
+<a href="/book">Back to Book List</a>
+<h1>Give Book</h1>
+<form method="post" th:action="@{/give_book}">
+  <input type="text" name="id" >
+  <input type="submit" value="Give Book">
+  <button> <a th:href="@{/book }">Book List</a> </button>
+</form>
+</body>
+</html>
