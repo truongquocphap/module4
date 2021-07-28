@@ -100,13 +100,13 @@ public class CustomerController {
         return modelAndView;
     }
     @GetMapping("/{id}")
-    public ModelAndView showInformation(@PathVariable Long id) {
+    public ModelAndView showInformation(@PathVariable Long id) throws Exception {
         try {
             ModelAndView modelAndView = new ModelAndView("/customer/list");
             Optional<Customer> customerOptional = customerService.findOne(id);
             modelAndView.addObject("customers", customerOptional.orElse(null));
             return modelAndView;
-        } catch (Exception e) {
+        } catch (DuplicateFirstNameLastNameException e) {
             return new ModelAndView("redirect:/customers");
         }
     }
