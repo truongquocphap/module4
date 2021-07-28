@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+<a href="/">Back to Flower List</a>
+<div th:if="${cart != null && cart.getProductMap().size() > 0}">
+
+    <div> tổng tiền: <span th:text="${cart.price()}"></span></div>
+    <div class="card col-3 float-left" th:each="productMap: ${cart.productMap}">
+        <img class="card-img-top" th:src="${productMap.key.get().img}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${productMap.key.get().name}"></h5>
+            <a th:href="@{/add/__${productMap.key.get().id}__(action='+')}" th:text="${'+'}"></a>
+            <p class="card-text" th:text="${productMap.value}"></p>
+            <a th:href="@{/add/__${productMap.key.get().id}__(action='-')}" th:text="${'-'}"></a>
+            <p class="card-text" th:text="${productMap.key.get().price}"></p>
+            <h5 class="card-title" th:text="${productMap.key.get().description}"></h5>
+            <button><a th:href="@{/add/__${productMap.key.get().id}__(action='delete')}" th:text="${'delete'}"></a>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div th:if="${cart == null && cart.getProductMap().size() == 0}">
+    <h1>Đi mua đồ đi mới có mà xem</h1>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
