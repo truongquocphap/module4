@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ipa/blog")
-public class CategoryController {
+public class CategoryRestController {
     @Autowired
     IBlogService iBlogService;
     @Autowired

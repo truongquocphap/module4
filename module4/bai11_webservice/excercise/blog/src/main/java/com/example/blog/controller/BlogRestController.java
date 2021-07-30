@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("blog/list")
-public class BlogController {
+public class BlogRestController {
     @Autowired
     IBlogService iBlogService;
     @Autowired
