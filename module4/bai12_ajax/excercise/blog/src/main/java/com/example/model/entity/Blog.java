@@ -1,11 +1,9 @@
-package com.example.blog.model.entity;
+package com.example.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Blog {
@@ -14,11 +12,12 @@ public class Blog {
     private int id;
     private String name;
     private String content;
-    private LocalDate date=LocalDate.now();
+    private LocalDate date = LocalDate.now();
     @ManyToOne
     @JsonManagedReference
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
     public Blog() {
     }
 

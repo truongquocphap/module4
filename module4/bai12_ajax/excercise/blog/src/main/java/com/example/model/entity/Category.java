@@ -1,4 +1,4 @@
-package com.example.blog.model.entity;
+package com.example.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -12,10 +12,12 @@ public class Category {
     private Integer id;
     private String name;
     @JsonBackReference
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Blog> blogList;
+
     public Category() {
     }
+
     public List<Blog> getBlogList() {
         return blogList;
     }

@@ -1,6 +1,6 @@
-package com.example.blog.model.repository;
+package com.example.model.repository;
 
-import com.example.blog.model.entity.Category;
+import com.example.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ICategoryRepository extends JpaRepository<Category,Integer> {

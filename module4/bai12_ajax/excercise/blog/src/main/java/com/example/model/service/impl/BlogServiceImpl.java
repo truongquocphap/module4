@@ -1,8 +1,8 @@
-package com.example.blog.model.service.impl;
+package com.example.model.service.impl;
 
-import com.example.blog.model.entity.Blog;
-import com.example.blog.model.repository.IBlogRepository;
-import com.example.blog.model.service.IBlogService;
+import com.example.model.entity.Blog;
+import com.example.model.repository.IBlogRepository;
+import com.example.model.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +16,7 @@ public class BlogServiceImpl implements IBlogService {
     IBlogRepository iBlogRepository;
 
     @Override
-    public Page<Blog> blogList( Pageable pageable) {
+    public Page<Blog> blogList(Pageable pageable) {
         return iBlogRepository.findAll(pageable);
     }
 
@@ -33,5 +33,10 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public List<Blog> findAllByCategory_Id(Integer id) {
         return iBlogRepository.findAllByCategory_Id(id);
+    }
+
+    @Override
+    public Page<Blog> findAllByNameContaining(Pageable pageable, String name) {
+        return iBlogRepository.findAllByNameContaining(pageable,name);
     }
 }

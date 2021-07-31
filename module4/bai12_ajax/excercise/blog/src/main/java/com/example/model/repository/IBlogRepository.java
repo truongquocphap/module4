@@ -1,6 +1,6 @@
-package com.example.blog.model.repository;
+package com.example.model.repository;
 
-import com.example.blog.model.entity.Blog;
+import com.example.model.entity.Blog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface IBlogRepository extends JpaRepository<Blog,Integer > {
      List<Blog> findAllByCategory_Id(Integer id);
-
+     Page<Blog> findAllByNameContaining(Pageable pageable,String name);
 }

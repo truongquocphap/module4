@@ -1,12 +1,12 @@
-package com.example.blog.controller;
+package com.example.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class BController {
+public class BlogController {
     @GetMapping
     public String show(){
-        return "list";
+        return "blog";
     }
 }
