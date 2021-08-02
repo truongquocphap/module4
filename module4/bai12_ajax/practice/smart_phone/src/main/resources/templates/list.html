@@ -25,7 +25,7 @@
                 type: "POST",
                 data: JSON.stringify(newSmartphone),
                 //tên API
-                url: "/smartphones",
+                url: "/http://localhost:8080/smartphone",
                 //xử lý khi thành công
                 success: successHandler
 
@@ -34,34 +34,37 @@
             event.preventDefault();
         }
 
-        function successHandler() {
-            $.ajax({
-                type: "GET",
-                //tên API
-                url: "/smartphones",
-                //xử lý khi thành công
-                success: function (data) {
-                    // hien thi danh sach o day
-                    let content = '    <tr>\n' +
-                        '        <td>Producer</td>\n' +
-                        '        <td>Model</td>\n' +
-                        '        <td>Price</td>\n' +
-                        '        <td>Delete</td>\n' +
-                        '    </tr>';
-                    for (let i = 0; i < data.length; i++) {
-                        content += getSmartphone(data[i]);
-                    }
-                    document.getElementById('smartphoneList').innerHTML = content;
+        $.ajax({
+            type: "GET",
+            //tên API
+            url: "http://localhost:8080/list",
+
+            //xử lý khi thành công
+            success: function (data) {
+                let table = "";
+                let content = data.content;
+                console.log(content);
+                // hien thi danh sach o day
+                table = '    <tr>\n' +
+                    '        <td>Producer</td>\n' +
+                    '        <td>Model</td>\n' +
+                    '        <td>Price</td>\n' +
+                    '        <td>Delete</td>\n' +
+                    '        <td>Update</td>\n' +
+                    '    </tr>';
+                for (let i = 0; i < data.length; i++) {
+                    table += '    <tr>\n' +
+                        '        <td>' + data[i].producer + '</td>\n' +
+                        '        <td>' + data[i].model + '</td>\n' +
+                        '        <td>' + data[i].price + '</td>\n' +
+                        '        <td> <a id="deleteSmartphone" href="$(/delete/' + data[i].id + ')" >Delete</a></td>\n' +
+                        '        <td> <a id="update" href="$(/update/' + data[i].id + ')"> Edit</a></td>\n' +
+                        '    </tr>'
                 }
-            });
-        }
-
-        function getSmartphone(smartphone) {
-            return `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td >${smartphone.price}</td>` +
-                `<td><a class="deleteSmartphone" href="${smartphone.id}">Delete</a></td>`
-                    `<td><a class="update" href="${smartphone.id}">Update</a></td></tr>`;
-        }
-
+                document.getElementById('smartphoneList').innerHTML = table;
+            }
+        });
+        
         $(document).ready(function () {
             //sư kiện nào thực hiện Ajax
             $('.deleteSmartphone').click(function (event) {
@@ -84,33 +87,31 @@
             });
 
             $('.update').click(function (event) {
-                let id=$(this);
-                $('#edit').css("display","block");
-                $('#add').css("display","none");
-                let smartphoneId = id.attr("href");
+                let id = $(this);
+                $('#edit').css("display", "block");
+                $('#add').css("display", "none");
                 // goi ajax
                 $.ajax({
-                    type: "PUT",
-                    url: "/update/"+smartphoneId,
-                    data: JSON.stringify(update),
-                    success: function (date){
-                        $("#id").value=date.id;
-                        $("#producer").value=date.producer;
-                        $("#model").value=date.model;
-                        $("#price").value=date.price;
+                    type: "GET",
+                    url: "Http:/localho/smartphone" + id,
+                    success: function (date) {
+                        $("#id").value = date.id;
+                        $("#producer").value = date.producer;
+                        $("#model").value = date.model;
+                        $("#price").value = date.price;
                     }
                 })
                 event.preventDefault();
             })
         })
+
         function update() {
             //lay du lieu
-            let id=$("#id");
+            let id = $("#id");
             let producer = $("#producer").val();
             let model = $('#model').val();
             let price = $('#price').val();
             let update = {
-                id:id,
                 producer: producer,
                 model: model,
                 price: price
@@ -121,10 +122,10 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                type: "POST",
+                type: "PUT",
                 data: JSON.stringify(update),
                 //tên API
-                url: "/smartphones",
+                url: "update/" + id,
                 //xử lý khi thành công
                 success: successHandler
 
@@ -132,8 +133,6 @@
             //chặn sự kiện mặc định của thẻ
             event.preventDefault();
         }
-
-
     </script>
 </head>
 <body>
@@ -160,21 +159,7 @@
 </form>
 <h1>Smartphone List</h1>
 <table id="smartphoneList">
-    <tr>
-        <td>Producer</td>
-        <td>Model</td>
-        <td>Price</td>
-        <td>Delete</td>
-    </tr>
-    <th:block th:each="smartphone: ${smartphones}">
-        <tr>
-            <td th:text="${smartphone.producer}"></td>
-            <td th:text="${smartphone.model}"></td>
-            <td th:text="${smartphone.price}"></td>
-            <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>
-            <td><a class="update" th:href="${smartphone.getId()}">Update</a></td>
-        </tr>
-    </th:block>
+
 </table>
 </body>
 </html>

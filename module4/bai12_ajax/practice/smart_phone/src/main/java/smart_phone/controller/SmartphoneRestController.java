@@ -10,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import smart_phone.model.entity.Smartphone;
 import smart_phone.model.repository.ISmartphoneRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class SmartphoneRestController {
     @Autowired
     private ISmartphoneRepository smartphoneService;
@@ -21,11 +23,11 @@ public class SmartphoneRestController {
     public ResponseEntity<Smartphone> createSmartphone(@RequestBody Smartphone smartphone) {
         return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
     }
+
     @GetMapping("/list")
-    public ModelAndView getAllSmartphonePage() {
-        ModelAndView modelAndView = new ModelAndView("/list");
-        modelAndView.addObject("smartphones", smartphoneService.findAll());
-        return modelAndView;
+    public ResponseEntity<List<Smartphone>> getAllSmartphonePage() {
+        List<Smartphone> smartphones=smartphoneService.findAll();
+        return new ResponseEntity<>(smartphones,HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +40,22 @@ public class SmartphoneRestController {
         return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("update")
-    public ResponseEntity<Smartphone> updateSmartphone(@RequestBody Smartphone smartphone) {
-        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
+    @PutMapping("update/{id}")
+    public ResponseEntity<Smartphone> updateSmartphone(@PathVariable Long id,@RequestBody Smartphone smartphone) {
+        Smartphone smartphone1=smartphoneService.findById(id).orElse(null);
+        if (smartphone==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
+        }
+    }
+    @GetMapping("/smartphone/{id}")
+    public ResponseEntity<Smartphone>  getSmartphone(@PathVariable("id") Long id) {
+       Smartphone smartphone=smartphoneService.findById(id).orElse(null);
+       if (smartphone==null){
+           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+       }else {
+           return new ResponseEntity<>(smartphone,HttpStatus.OK);
+       }
     }
 }
