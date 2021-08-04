@@ -1,8 +1,5 @@
-package furama_resort.controller;
-
-import furama_resort.model.entity.Customer;
+package furama_resort.model.entity;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 
