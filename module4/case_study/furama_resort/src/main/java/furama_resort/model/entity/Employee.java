@@ -3,6 +3,8 @@ package furama_resort.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 public class Employee {
@@ -33,4 +35,6 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "division_id",referencedColumnName = "division_id")
     private DivisionEmployee divisionEmployee;
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
+    private List<Contract> contractList;
 }

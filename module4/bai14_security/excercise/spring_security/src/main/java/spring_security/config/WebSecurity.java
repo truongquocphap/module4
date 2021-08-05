@@ -1,4 +1,4 @@
-package spring_security.confid;
+package spring_security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
