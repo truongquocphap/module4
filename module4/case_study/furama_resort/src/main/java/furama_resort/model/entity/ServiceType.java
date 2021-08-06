@@ -1,11 +1,14 @@
 package furama_resort.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class ServiceType {
     @Id
@@ -16,4 +19,12 @@ public class ServiceType {
     private String serviceTypeName;
     @OneToMany(mappedBy = "serviceType",cascade = CascadeType.ALL)
     private List<Service> serviceList;
+
+    public ServiceType() {
+    }
+
+    public ServiceType(String serviceTypeName, List<Service> serviceList) {
+        this.serviceTypeName = serviceTypeName;
+        this.serviceList = serviceList;
+    }
 }

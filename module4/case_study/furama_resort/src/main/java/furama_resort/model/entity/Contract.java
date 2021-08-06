@@ -1,13 +1,16 @@
 package furama_resort.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Contract {
     @Id
@@ -33,4 +36,30 @@ public class Contract {
    @ManyToOne
     @JoinColumn(name = "employee_id",referencedColumnName = "employee_id")
     private Employee employee;
+
+    public Contract() {
+    }
+
+//    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit,
+//                    double contractTotalMoney, Service service, Customer customer, Employee employee) {
+//        this.contractStartDate = contractStartDate;
+//        this.contractEndDate = contractEndDate;
+//        this.contractDeposit = contractDeposit;
+//        this.contractTotalMoney = contractTotalMoney;
+//        this.service = service;
+//        this.customer = customer;
+//        this.employee = employee;
+//    }
+
+    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney,
+                    List<ContractDetail> contractDetailList, Service service, Customer customer, Employee employee) {
+        this.contractStartDate = contractStartDate;
+        this.contractEndDate = contractEndDate;
+        this.contractDeposit = contractDeposit;
+        this.contractTotalMoney = contractTotalMoney;
+        this.contractDetailList = contractDetailList;
+        this.service = service;
+        this.customer = customer;
+        this.employee = employee;
+    }
 }

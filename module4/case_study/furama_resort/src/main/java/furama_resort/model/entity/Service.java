@@ -1,11 +1,14 @@
 package furama_resort.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Service {
     @Id
@@ -39,4 +42,23 @@ public class Service {
     private RentType rentType;
     @OneToMany(mappedBy = "service",cascade = CascadeType.ALL)
     private List<Contract> contractList;
+
+    public Service() {
+    }
+
+    public Service(String serviceName, int serviceArea, Double serviceCost, int maxPeople, String standardRoom, String description, Double poolArea,
+                   int numberFloors, String serviceCode, ServiceType serviceType, RentType rentType, List<Contract> contractList) {
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.maxPeople = maxPeople;
+        this.standardRoom = standardRoom;
+        this.description = description;
+        this.poolArea = poolArea;
+        this.numberFloors = numberFloors;
+        this.serviceCode = serviceCode;
+        this.serviceType = serviceType;
+        this.rentType = rentType;
+        this.contractList = contractList;
+    }
 }

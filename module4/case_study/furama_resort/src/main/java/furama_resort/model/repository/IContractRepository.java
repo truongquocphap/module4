@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IContractRepository extends JpaRepository<Contract,Integer> {
-    @Query(value = "select * from contract where concat(contract_start_date,contract_end_date) ",nativeQuery = true)
+    @Query(value = "select * from contract where concat(contract_start_date,contract_end_date) like %?1% ",nativeQuery = true)
     Page<Contract> contractList(String name, Pageable pageable);
 }

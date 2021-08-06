@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<header th:replace="header :: phapcp">
+</header>
+<div th:replace="header::carusel"></div>
+<div th:replace="header :: navs"></div>
+
+<div class="container-fluid row">
+    <div th:replace="content :: content">
+    </div>
+    <div class="col-9">
+        <button style="background-color: blueviolet">
+            <a href="/service-create" style="color: #171a1d">Create Service</a>
+
+        </button>
+        <table class="table table-dark table-responsive">
+            <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Name</th>
+                <th scope="col">Code</th>
+                <th scope="col">Area</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Max People</th>
+                <th scope="col">Standard Room</th>
+                <th scope="col">Description</th>
+                <th scope="col">Pool Area</th>
+                <th scope="col">Number Floors</th>
+                <th scope="col">Rent Type</th>
+                <th scope="col">Service Type</th>
+                <th></th>
+                <th scope="col" style="column-span: 2">Action</th>
+
+            </tr>
+            </thead>
+            <th:block th:each="service , count: ${serviceList}">
+                <tr>
+                    <td th:text="${count.count}"></td>
+                    <th th:text="${service.serviceName}"></th>
+                    <th th:text="${service.serviceCode}"></th>
+                    <td th:text="${service.serviceArea}"></td>
+                    <td th:text="${service.serviceCost}"></td>
+                    <td th:text="${service.maxPeople}"></td>
+                    <td th:text="${service.standardRoom}"></td>
+                    <td th:text="${service.description}"></td>
+                    <td th:text="${service.poolArea}"></td>
+                    <td th:text="${service.numberFloors}"></td>
+                    <td th:text="${service.rentType.rentTypeName}"></td>
+                    <td th:text="${service.serviceType.serviceTypeName}"></td>
+                    <td>
+                        <button>
+                            <a th:href="@{service-edit/__${service.serviceId}__ }">Edit</a>
+
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                th:onclick="|deleteService(${service.serviceId})|">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <a th:href="@{service-list/(page=${serviceList.number - 1},search=${searchName})}"
+           th:if="${serviceList.hasPrevious()}">Previous</a>
+        <span th:text="${serviceList.number + 1}"></span>/<span th:text="${serviceList.totalPages}"></span>
+        <a th:href="@{/service-list(page=${serviceList.number + 1},search=${searchName})}"
+           th:if="${serviceList.hasNext()}">Next</a>
+    </div>
+</div>
+<form action="/service-delete">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="id" name="id">
+                <div class="modal-body">
+                    Bạn có muốn xoá không????
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function deleteService(id) {
+        document.getElementById('id').value = id;
+    }
+</script>
+<div th:replace="footer :: footer"></div>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

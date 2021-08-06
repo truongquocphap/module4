@@ -3,6 +3,8 @@ package furama_resort.model.dto;
 import furama_resort.model.entity.RentType;
 import furama_resort.model.entity.ServiceType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -10,7 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class ServiceDto {
     private Integer serviceId;
     @NotBlank(message = "Trường không được để trống")
@@ -39,4 +42,38 @@ public class ServiceDto {
     private ServiceType serviceType;
     private RentType rentType;
     private List<ContractDto> contractList;
+
+    public ServiceDto() {
+    }
+
+    public ServiceDto(String serviceName, int serviceArea, Double serviceCost, int maxPeople, String standardRoom,
+                      String description, Double poolArea, int numberFloors, String serviceCode, ServiceType serviceType, RentType rentType) {
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.maxPeople = maxPeople;
+        this.standardRoom = standardRoom;
+        this.description = description;
+        this.poolArea = poolArea;
+        this.numberFloors = numberFloors;
+        this.serviceCode = serviceCode;
+        this.serviceType = serviceType;
+        this.rentType = rentType;
+    }
+
+    public ServiceDto(String serviceName, int serviceArea, Double serviceCost, int maxPeople, String standardRoom, String description, Double poolArea,
+                      int numberFloors, String serviceCode, ServiceType serviceType, RentType rentType, List<ContractDto> contractList) {
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.maxPeople = maxPeople;
+        this.standardRoom = standardRoom;
+        this.description = description;
+        this.poolArea = poolArea;
+        this.numberFloors = numberFloors;
+        this.serviceCode = serviceCode;
+        this.serviceType = serviceType;
+        this.rentType = rentType;
+        this.contractList = contractList;
+    }
 }

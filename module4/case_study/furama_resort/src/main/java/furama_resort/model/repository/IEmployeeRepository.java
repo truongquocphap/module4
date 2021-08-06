@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IEmployeeRepository extends JpaRepository<Employee,Integer> {
     @Query(value = "select * from employee where concat(employee_name,employee_address) like %?1% ",nativeQuery = true)
-    Page<Employee> customerList(String name, Pageable pageable);
+    Page<Employee> employeeList(String name, Pageable pageable);
 }

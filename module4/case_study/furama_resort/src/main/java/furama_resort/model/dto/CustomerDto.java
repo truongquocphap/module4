@@ -2,20 +2,21 @@ package furama_resort.model.dto;
 
 import furama_resort.model.entity.CustomerType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class CustomerDto {
     private Integer customerId;
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[a-zA-Z]+$",message = "chỉ cho nhập ký tự chữ")
     private String customerName;
     private String birthday;
-    @Pattern(regexp = "^KH-[0-9]{4}$")
+    @Pattern(regexp = "^KH-[0-9]{4}$",message="Nhập đúng định dạng KH-XXXX")
     private String customerCode;
-    @NotNull(message="Không được để trống")
-    @Min(value=1,message="Lớn hơn 1")
     private int gender;
     @Pattern(regexp = "^[0-9]{10}$",message = "Id Cart phải được 10 chữ số")
     private String idCart;
@@ -29,4 +30,20 @@ public class CustomerDto {
     private String address;
     private CustomerType customerType;
     private List<ContractDto> contractList;
+
+    public CustomerDto() {
+    }
+
+    public CustomerDto(String customerName, String birthday, String customerCode, int gender, String idCart, String phone, String email, String address, CustomerType customerType, List<ContractDto> contractList) {
+        this.customerName = customerName;
+        this.birthday = birthday;
+        this.customerCode = customerCode;
+        this.gender = gender;
+        this.idCart = idCart;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.customerType = customerType;
+        this.contractList = contractList;
+    }
 }

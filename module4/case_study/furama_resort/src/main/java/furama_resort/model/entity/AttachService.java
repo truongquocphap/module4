@@ -1,11 +1,14 @@
 package furama_resort.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class AttachService {
     @Id
@@ -22,4 +25,15 @@ public class AttachService {
     private String attachServiceStatus;
     @OneToMany(mappedBy = "attachService",cascade = CascadeType.ALL)
     private List<ContractDetail> contractDetailList;
+
+    public AttachService() {
+    }
+
+    public AttachService(String attachServiceName, double attachServiceCost, int attachServiceUnit, String attachServiceStatus, List<ContractDetail> contractDetailList) {
+        this.attachServiceName = attachServiceName;
+        this.attachServiceCost = attachServiceCost;
+        this.attachServiceUnit = attachServiceUnit;
+        this.attachServiceStatus = attachServiceStatus;
+        this.contractDetailList = contractDetailList;
+    }
 }

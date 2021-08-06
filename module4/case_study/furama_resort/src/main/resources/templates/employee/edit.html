@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+  <style>
+    p {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<header th:replace="header :: phapcp">
+</header>
+<div th:replace="header::carusel"></div>
+<div th:replace="header :: navs"></div>
+<div class="container-fluid row">
+  <div th:replace="content :: content"></div>
+  <form th:action="@{/employee-edit}" method="post" th:object="${employeeDto}">
+    <table>
+      <input type="hidden" th:field="*{employeeId}">
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" th:field="*{employeeName}"/>
+          <p th:errors="*{employeeName}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Birthday:</td>
+        <td><input type="date" th:field="*{birthday}"/></td>
+      </tr>
+      <tr>
+        <td>Id Card:</td>
+        <td><input type="text" th:field="*{employeeIdCart}"/>
+          <p th:errors="*{employeeIdCart}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Salary:</td>
+        <td><input type="text" th:field="*{employeeSalary}"/>
+          <p th:errors="*{employeeSalary}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td><input type="text" th:field="*{employeePhone}"/>
+          <p th:errors="*{employeePhone}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" th:field="*{employeeEmail}"/>
+          <p th:errors="*{employeeEmail}"></p>
+        </td>
+
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" th:field="*{employeeAddress}"/>
+          <p th:errors="*{employeeAddress}"></p>
+        </td>
+      </tr>
+
+      <td>Position:</td>
+      <td>
+        <select th:field="*{position}">
+          <option th:each=" position : ${positionList}" th:value="${position.positionId}"
+                  th:text="${position.positionName}"></option>
+        </select>
+      </td>
+      </tr>
+
+      <td>Education:</td>
+      <td>
+        <select th:field="*{educationEmployee}">
+          <option th:each=" education : ${educationList}" th:value="${education.educationId}"
+                  th:text="${education.educationName}"></option>
+        </select>
+      </td>
+      </tr>
+      <td>Division:</td>
+      <td>
+        <select th:field="*{divisionEmployee}">
+          <option th:each=" division : ${divisionList}" th:value="${division.divisionId}"
+                  th:text="${division.divisionName}"></option>
+        </select>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <button>
+            <a th:href="@{/employee-list}"> Back to Employee List</a>
+          </button>
+        </td>
+        <td><input type="submit" value="Update Employee"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div th:replace="footer :: footer"></div>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

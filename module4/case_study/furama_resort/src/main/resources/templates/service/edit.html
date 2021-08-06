@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+  <style>
+    p{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<header th:replace="header :: phapcp">
+</header>
+<div th:replace="header::carusel"></div>
+<div th:replace="header :: navs"></div>
+<div class="container-fluid row">
+  <div th:replace="content :: content"></div>
+  <form th:action="@{/service-update}" method="post" th:object="${serviceDto}">
+    <table>
+      <input type="hidden" th:field="*{serviceId}">
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" th:field="*{serviceName}"/>
+          <p th:errors="*{serviceName}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Area:</td>
+        <td><input type="text" th:field="*{serviceArea}"/>
+          <p th:errors="*{serviceArea}"></p></td>
+      </tr>
+      <tr>
+        <td>Cost:</td>
+        <td><input type="text" th:field="*{serviceCost}"/>
+          <p th:errors="*{serviceCost}"></p></td>
+      </tr>
+      <tr>
+        <td>Max PeoPle:</td>
+        <td><input type="text" th:field="*{maxPeople}"/>
+          <p th:errors="*{maxPeople}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Standard Room:</td>
+        <td><input type="text" th:field="*{standardRoom}"/>
+          <p th:errors="*{standardRoom}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" th:field="*{description}"/>
+          <p th:errors="*{description}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Pool Area:</td>
+        <td><input type="text" th:field="*{poolArea}"/>
+          <p th:errors="*{poolArea}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Service Code:</td>
+        <td><input type="text" th:field="*{serviceCode}"/>
+          <p th:errors="*{serviceCode}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Number Floors:</td>
+        <td><input type="text" th:field="*{numberFloors}"/>
+          <p th:errors="*{numberFloors}"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>Rent Type:</td>
+        <td>
+          <select th:field="*{rentType}">
+            <option th:each = " rt : ${rentType}" th:value="${rt.rentTypeId}" th:text="${rt.rentTypeName}"></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Service Type:</td>
+        <td>
+          <select th:field="*{serviceType}">
+            <option th:each = " st : ${serviceType}" th:value="${st.serviceTypeId}" th:text="${st.serviceTypeName}"></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><button>
+          <a th:href="@{/servie-list}"> Back to Service List</a>
+        </button></td>
+        <td><input type="submit" value="Update Service"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div th:replace="footer :: footer"></div>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

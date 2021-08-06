@@ -7,7 +7,7 @@
 <body>
 <nav class="navbar navbar-light bg-light" style="height: 60px;background-color: blueviolet" th:fragment="phapcp">
     <a class="navbar-brand"><img src="img/p.jpg" style="height: 60px" width="50px"></a>
-    <h1 style="font-family: Parisienne, Papyrus" >PhÁpCP</h1>
+    <h1 style="font-family: Parisienne, Papyrus;color: #6f42c1" >PhÁpCP</h1>
 </nav>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" th:fragment="carusel">
     <ol class="carousel-indicators">
@@ -36,22 +36,22 @@
     </a>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary" th:fragment="navs">
-    <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="/employee">Employee</a>
-            <a class="nav-link" href="/customer">Customer</a>
-            <a class="nav-link"  href="/service">Service</a>
-            <a class="nav-link"  href="/contract">Contract</a>
+            <a class="nav-link active" href="/" style="color: #1b1e21">Home <span class="sr-only"></span></a>
+            <a class="nav-link" href="/employee-list" style="color: #1b1e21">Employee</a>
+            <a class="nav-link" href="/customer-list" style="color: #1b1e21">Customer</a>
+            <a class="nav-link"  href="/service-list" style="color: #1b1e21">Service</a>
+            <a class="nav-link"  href="/contract-list" style="color: #1b1e21">Contract</a>
+            <a class="nav-link"  href="/contract-detail-list" style="color: #1b1e21">Contract Detail</a>
         </div>
     </div>
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>

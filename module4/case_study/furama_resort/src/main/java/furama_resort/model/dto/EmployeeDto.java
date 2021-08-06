@@ -4,19 +4,22 @@ import furama_resort.model.entity.DivisionEmployee;
 import furama_resort.model.entity.EducationEmployee;
 import furama_resort.model.entity.Position;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.validation.constraints.*;
 import javax.xml.ws.soap.Addressing;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class EmployeeDto {
     private Integer employeeId;
     @NotBlank(message = "Trường không được để trống")
     private String employeeName;
     private String birthday;
-    @Pattern(regexp = "^//d{10}$")
+    @Pattern(regexp = "^[0-9]{10}$",message = "Id Card Phải 10 số")
     @NotNull
     private String employeeIdCart;
     @NotNull(message="Không được để trống")
@@ -30,9 +33,26 @@ public class EmployeeDto {
     private String employeeEmail;
     @NotBlank(message="Trường không được để trống")
     private String employeeAddress;
-    @NotBlank(message="Trường không được để trống")
     private Position position;
     private EducationEmployee educationEmployee;
     private DivisionEmployee divisionEmployee;
     private List<ContractDto> contractList;
+
+    public EmployeeDto() {
+    }
+
+    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position,
+                       EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<ContractDto> contractList) {
+        this.employeeName = employeeName;
+        this.birthday = birthday;
+        this.employeeIdCart = employeeIdCart;
+        this.employeeSalary = employeeSalary;
+        this.employeePhone = employeePhone;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.position = position;
+        this.educationEmployee = educationEmployee;
+        this.divisionEmployee = divisionEmployee;
+        this.contractList = contractList;
+    }
 }
