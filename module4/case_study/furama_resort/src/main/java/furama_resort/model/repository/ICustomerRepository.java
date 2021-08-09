@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
-    @Query(value = "select * from customer where concat(customer_name,customer_code) like %?1% ",nativeQuery = true)
+    @Query(value = "select * from customer where concat(customer_name,customer_code) like %?1% and delete_flag = 1",nativeQuery = true)
     Page<Customer> customerList(String name, Pageable pageable);
 
 }

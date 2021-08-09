@@ -3,13 +3,10 @@ package furama_resort.model.dto;
 import furama_resort.model.entity.DivisionEmployee;
 import furama_resort.model.entity.EducationEmployee;
 import furama_resort.model.entity.Position;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.validation.constraints.*;
-import javax.xml.ws.soap.Addressing;
 import java.util.List;
 
 @Getter
@@ -33,6 +30,7 @@ public class EmployeeDto {
     private String employeeEmail;
     @NotBlank(message="Trường không được để trống")
     private String employeeAddress;
+    private int deleteFlag;
     private Position position;
     private EducationEmployee educationEmployee;
     private DivisionEmployee divisionEmployee;
@@ -41,7 +39,7 @@ public class EmployeeDto {
     public EmployeeDto() {
     }
 
-    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position,
+    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag, Position position,
                        EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<ContractDto> contractList) {
         this.employeeName = employeeName;
         this.birthday = birthday;
@@ -50,9 +48,25 @@ public class EmployeeDto {
         this.employeePhone = employeePhone;
         this.employeeEmail = employeeEmail;
         this.employeeAddress = employeeAddress;
+        this.deleteFlag = deleteFlag;
         this.position = position;
         this.educationEmployee = educationEmployee;
         this.divisionEmployee = divisionEmployee;
         this.contractList = contractList;
+    }
+
+    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress,
+                       int deleteFlag, Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee) {
+        this.employeeName = employeeName;
+        this.birthday = birthday;
+        this.employeeIdCart = employeeIdCart;
+        this.employeeSalary = employeeSalary;
+        this.employeePhone = employeePhone;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.deleteFlag = deleteFlag;
+        this.position = position;
+        this.educationEmployee = educationEmployee;
+        this.divisionEmployee = divisionEmployee;
     }
 }

@@ -13,4 +13,5 @@ public interface IContractService {
     void save(Contract contract);
     void deleteById(Integer id);
     List<Contract> findAll();
+    Page<Contract> contractUseServiceList(Pageable pageable,String name);
 }

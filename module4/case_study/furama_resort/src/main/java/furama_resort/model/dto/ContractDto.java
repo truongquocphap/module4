@@ -4,7 +4,6 @@ import furama_resort.model.entity.ContractDetail;
 import furama_resort.model.entity.Customer;
 import furama_resort.model.entity.Employee;
 import furama_resort.model.entity.Service;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +24,7 @@ public class ContractDto {
     @NotNull(message = "Không được để trống")
     @Min(value = 1,message = "Area Phải lớn hơn 0")
     private double contractTotalMoney;
+    private int deleteFlag;
     private List<ContractDetail> contractDetailList;
     private Service service;
     private Customer customer;
@@ -33,24 +33,13 @@ public class ContractDto {
     public ContractDto() {
     }
 
-
-    public ContractDto(LocalDate contractStartDate, String contractEndDate, double contractDeposit,
-                       double contractTotalMoney, Service service, Customer customer, Employee employee) {
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-        this.contractDeposit = contractDeposit;
-        this.contractTotalMoney = contractTotalMoney;
-        this.service = service;
-        this.customer = customer;
-        this.employee = employee;
-    }
-
-    public ContractDto(LocalDate contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney,
+    public ContractDto(LocalDate contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney, int deleteFlag,
                        List<ContractDetail> contractDetailList, Service service, Customer customer, Employee employee) {
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.contractDeposit = contractDeposit;
         this.contractTotalMoney = contractTotalMoney;
+        this.deleteFlag = deleteFlag;
         this.contractDetailList = contractDetailList;
         this.service = service;
         this.customer = customer;

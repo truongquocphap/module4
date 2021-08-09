@@ -18,10 +18,12 @@
 <div class="container-fluid row">
   <div th:replace="content :: content"></div>
   <form th:action="@{/contract-create}" method="post" th:object="${contractDto}">
+    <h5 style="color: #007bff">Create Contract Page</h5>
     <table>
+      <input type="hidden" th:field="*{deleteFlag}">
       <tr>
         <td>Start Date:</td>
-        <td><input type="text" th:field="*{contractStartDate}" th:text="*{contractStartDate}" disabled/>
+        <td><input type="text" th:field="*{contractStartDate}" disabled/>
         </td>
       </tr>
       <tr>

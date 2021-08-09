@@ -1,6 +1,7 @@
 package furama_resort.model.service.impl;
 
 import furama_resort.model.entity.ContractDetail;
+import furama_resort.model.dto.ContractDetailOther;
 import furama_resort.model.repository.IContractDetailRepository;
 import furama_resort.model.service.IContractDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,15 @@ public class ContractDetailServiceImpl implements IContractDetailService {
     @Override
     public List<ContractDetail> findAll() {
         return contractDetailRepository.findAll();
+    }
+
+    @Override
+    public List<ContractDetailOther> contractDetailOtherList() {
+        return contractDetailRepository.contractDetailOtherList();
+    }
+
+    @Override
+    public List<ContractDetail> findAllByContract_ContractId(Integer id) {
+        return contractDetailRepository.findAllByContract_ContractId(id);
     }
 }

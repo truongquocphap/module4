@@ -62,6 +62,7 @@ public class ServiceController {
         }
         Service service= new Service();
         BeanUtils.copyProperties(serviceDto,service);
+        service.setDeleteFlag(1);
         serviceService.save(service);
         return "redirect:/service-list";
     }
@@ -86,7 +87,9 @@ public class ServiceController {
     }
     @GetMapping("/service-delete")
     public String deleteService(@RequestParam("id") Integer id){
-        serviceService.deleteById(id);
+        serviceService.findById(id).setDeleteFlag(0);
+        serviceService.save(serviceService.findById(id));
         return "redirect:/service-list";
     }
+
 }

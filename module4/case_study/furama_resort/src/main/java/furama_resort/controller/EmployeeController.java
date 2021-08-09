@@ -66,6 +66,7 @@ public class EmployeeController {
         }
         Employee employee= new Employee();
         BeanUtils.copyProperties(employeeDto,employee);
+        employee.setDeleteFlag(1);
         employeeService.save(employee);
         return "redirect:/employee-list";
     }
@@ -90,7 +91,8 @@ public class EmployeeController {
     }
     @GetMapping("/employee-delete")
     public String delete(@RequestParam("id") Integer id){
-        employeeService.deleteById(id);
+        employeeService.findById(id).setDeleteFlag(0);
+        employeeService.save(employeeService.findById(id));
         return "redirect:/employee-list";
     }
 }

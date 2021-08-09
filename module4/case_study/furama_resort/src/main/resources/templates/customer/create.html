@@ -17,9 +17,11 @@
 <div th:replace="header :: navs"></div>
 <div class="container-fluid row">
     <div th:replace="content :: content"></div>
-    <form th:action="@{/customer-create}" method="post" th:object="${customerDto}">
-        <table>
-            <tr>
+    <form th:action="@{/customer-create}" method="post" th:object="${customerDto}" style="justify-content: center">
+        <h4 style="color: #007bff">Create Customer Page</h4>
+        <input type="hidden" th:field="*{deleteFlag}">
+        <table >
+            <tr >
                 <td>Name:</td>
                 <td><input type="text" th:field="*{customerName}"/>
                     <p th:errors="*{customerName}"></p>

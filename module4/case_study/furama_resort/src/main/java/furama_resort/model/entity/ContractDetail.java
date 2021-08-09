@@ -1,6 +1,5 @@
 package furama_resort.model.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +15,7 @@ public class ContractDetail {
     private Integer contractDetailId;
     @Column(name = "contract_quantity")
     private int quantity;
+    private int deleteFlag;
     @ManyToOne
     @JoinColumn(name = "attach_service_id",referencedColumnName = "attach_service_id")
     private AttachService attachService;
@@ -26,8 +26,9 @@ public class ContractDetail {
     public ContractDetail() {
     }
 
-    public ContractDetail(int quantity, AttachService attachService, Contract contract) {
+    public ContractDetail(int quantity, int deleteFlag, AttachService attachService, Contract contract) {
         this.quantity = quantity;
+        this.deleteFlag = deleteFlag;
         this.attachService = attachService;
         this.contract = contract;
     }

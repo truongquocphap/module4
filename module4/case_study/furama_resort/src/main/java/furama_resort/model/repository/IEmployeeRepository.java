@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IEmployeeRepository extends JpaRepository<Employee,Integer> {
-    @Query(value = "select * from employee where concat(employee_name,employee_address) like %?1% ",nativeQuery = true)
+    @Query(value = "select * from employee where concat(employee_name,employee_address) like %?1% and delete_flag = 1",nativeQuery = true)
     Page<Employee> employeeList(String name, Pageable pageable);
 }

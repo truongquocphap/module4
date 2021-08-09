@@ -10,16 +10,20 @@
 </header>
 <div th:replace="header::carusel"></div>
 <div th:replace="header :: navs"></div>
-<button style="background-color: rebeccapurple">
-    <a href="/contract-detail-create" style="color: #171a1d">Create contract</a>
-</button>
+
 <div class="container-fluid row">
     <div th:replace="content :: content">
     </div>
 
     <div class="col-9 table-responsive">
+        <button style="background-color: pink">
+            <a href="/contract-detail-create" style="color: #171a1d">Create contract</a>
+        </button>
         <table class="table table-dark ">
             <thead>
+            <tr>
+                <th style="color: #cce5ff;column-span: 7">Contract DDetail List</th>
+            </tr>
             <tr>
                 <th scope="col">STT</th>
                 <th scope="col">Attach Service Name</th>
@@ -35,8 +39,8 @@
                     <td th:text="${count.count}"></td>
                     <th th:text="${contractDetail.attachService.attachServiceName}"></th>
                     <td th:text="${contractDetail.contract.contractStartDate}"></td>
-                    <td th:if="${contractDetail.contract.contractTotalMoney}==1">Male</td>
-                    <td th:if="${contractDetail.attachService.attachServiceCost}==2">Female</td>
+                    <td th:text="${contractDetail.contract.contractTotalMoney}"></td>
+                    <td th:text="${contractDetail.attachService.attachServiceCost}"></td>
                     <td>
                         <button>
                             <a th:href="@{/contract-detail-edit/__${contractDetail.contractDetailId}__ }">Edit</a>
@@ -52,26 +56,22 @@
                 </tr>
             </th:block>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" th:href="@{/contract-detail-list(page=${contractDetailList.number - 1},
-                search=${searchName})}" th:if="${contractDetailList.hasPrevious()}">>Previous</a></li>
-                <li class="page-item"><a class="page-link" th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"
-                                         th:if="${contractDetailList.hasNext()}">1</a></li>
-                <li class="page-item"><a class="page-link" th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"
-                                         th:if="${contractDetailList.hasNext()}">2</a></li>
-                <li class="page-item"><a class="page-link" th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"
-                                         th:if="${contractDetailList.hasNext()}">3</a></li>
-                <li class="page-item"><a class="page-link" th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"
-                                         th:if="${contractDetailList.hasNext()}">Next</a></li>
-            </ul>
-        </nav>
-<!--        <a th:href="@{/contract-detail-list(page=${contractDetailList.number - 1},search=${searchName})}"-->
-<!--           th:if="${contractDetailList.hasPrevious()}">Previous</a>-->
-<!--        <span th:text="${contractDetailList.number + 1}"></span>/-->
-<!--        <span th:text="${contractDetailList.totalPages}"></span>-->
-<!--        <a th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"-->
-<!--           th:if="${contractDetailList.hasNext()}">Next</a>-->
+        <div>
+            <a class="btn btn-outline-success"
+               th:href="@{/contract-detail-list(page=${contractDetailList.number - 1},search=${searchName})}"
+               th:if="${contractDetailList.hasPrevious()}">Previous</a>
+            <span th:each="contractDetail : ${#numbers.sequence(0,contractDetailList.totalPages - 1) }"
+                  th:if="${contractDetailList.hasContent()}">
+          <a class="btn btn-outline-success"
+             th:href="@{/contract-detail-list(page=${contractDetail},seach=${searchName})}"
+             th:text="${contractDetail+1}"
+             th:if="${(contractDetail>(contractDetailList.number)-1)&&(contractDetail<(contractDetailList.number+3))}"
+          ></a>
+    </span>
+            <a class="btn btn-outline-success"
+               th:href="@{/contract-detail-list(page=${contractDetailList.number + 1},search=${searchName})}"
+               th:if="${contractDetailList.hasNext()}">Next</a>
+        </div>
     </div>
 </div>
 <form action="/contract-detail-delete">

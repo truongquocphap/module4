@@ -15,12 +15,15 @@
     <div th:replace="content :: content">
     </div>
     <div class="col-9">
-        <button style="background-color: blueviolet">
+        <button style="background-color: pink">
             <a href="/service-create" style="color: #171a1d">Create Service</a>
 
         </button>
         <table class="table table-dark table-responsive">
             <thead>
+            <tr>
+                <th style="column-span: 14;background-color: #cce5ff">Service List</th>
+            </tr>
             <tr>
                 <th scope="col">STT</th>
                 <th scope="col">Name</th>
@@ -68,11 +71,18 @@
                 </tr>
             </th:block>
         </table>
-        <a th:href="@{service-list/(page=${serviceList.number - 1},search=${searchName})}"
-           th:if="${serviceList.hasPrevious()}">Previous</a>
-        <span th:text="${serviceList.number + 1}"></span>/<span th:text="${serviceList.totalPages}"></span>
-        <a th:href="@{/service-list(page=${serviceList.number + 1},search=${searchName})}"
-           th:if="${serviceList.hasNext()}">Next</a>
+        <!--#region phân trang-->
+        <div>
+            <a class="btn btn-outline-success" th:href="@{/service-list(page=${serviceList.number - 1},search=${searchName})}"
+               th:if="${serviceList.hasPrevious()}">Previous</a>
+            <span th:each="service : ${#numbers.sequence(0,serviceList.totalPages - 1) }" th:if="${serviceList.hasContent()}">
+          <a class="btn btn-outline-success" th:href="@{/service-list(page=${service},keyWord=${searchName})}"
+             th:text="${service+1}"
+             th:if="${(service>(serviceList.number)-1)&&(service<(serviceList.number+3))}"
+          ></a>
+    </span>
+            <a class="btn btn-outline-success" th:href="@{/service-list(page=${serviceList.number + 1},search=${searchName})}" th:if="${serviceList.hasNext()}">Next</a>
+        </div>
     </div>
 </div>
 <form action="/service-delete">

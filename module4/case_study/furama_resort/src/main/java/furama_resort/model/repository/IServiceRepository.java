@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IServiceRepository extends JpaRepository<Service,Integer> {
-    @Query(value = "select * from service where concat(service_name,service_code) like %?1% ",nativeQuery = true)
+    @Query(value = "select * from service where concat(service_name,service_code) like %?1% and delete_flag = 1",nativeQuery = true)
     Page<Service> serviceList(String name, Pageable pageable);
 }

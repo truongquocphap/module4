@@ -1,12 +1,10 @@
 package furama_resort.model.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -25,6 +23,7 @@ public class Contract {
     private double contractDeposit;
     @Column(name = "contract_total_money")
     private double contractTotalMoney;
+    private int deleteFlag;
    @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL)
     private List<ContractDetail> contractDetailList;
    @ManyToOne
@@ -40,24 +39,26 @@ public class Contract {
     public Contract() {
     }
 
-//    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit,
-//                    double contractTotalMoney, Service service, Customer customer, Employee employee) {
-//        this.contractStartDate = contractStartDate;
-//        this.contractEndDate = contractEndDate;
-//        this.contractDeposit = contractDeposit;
-//        this.contractTotalMoney = contractTotalMoney;
-//        this.service = service;
-//        this.customer = customer;
-//        this.employee = employee;
-//    }
-
-    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney,
-                    List<ContractDetail> contractDetailList, Service service, Customer customer, Employee employee) {
+    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit,
+                    double contractTotalMoney, int deleteFlag, List<ContractDetail> contractDetailList, Service service, Customer customer, Employee employee) {
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.contractDeposit = contractDeposit;
         this.contractTotalMoney = contractTotalMoney;
+        this.deleteFlag = deleteFlag;
         this.contractDetailList = contractDetailList;
+        this.service = service;
+        this.customer = customer;
+        this.employee = employee;
+    }
+
+    public Contract(LocalDate contractStartDate, String contractEndDate, double contractDeposit,
+                    double contractTotalMoney, int deleteFlag, Service service, Customer customer, Employee employee) {
+        this.contractStartDate = contractStartDate;
+        this.contractEndDate = contractEndDate;
+        this.contractDeposit = contractDeposit;
+        this.contractTotalMoney = contractTotalMoney;
+        this.deleteFlag = deleteFlag;
         this.service = service;
         this.customer = customer;
         this.employee = employee;

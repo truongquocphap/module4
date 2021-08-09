@@ -1,7 +1,6 @@
 package furama_resort.model.dto;
 
 import furama_resort.model.entity.CustomerType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,13 +27,15 @@ public class CustomerDto {
     private String email;
     @NotBlank(message="Trường không được để trống")
     private String address;
+    private int deleteFlag;
     private CustomerType customerType;
     private List<ContractDto> contractList;
 
     public CustomerDto() {
     }
 
-    public CustomerDto(String customerName, String birthday, String customerCode, int gender, String idCart, String phone, String email, String address, CustomerType customerType, List<ContractDto> contractList) {
+    public CustomerDto(String customerName, String birthday, String customerCode, int gender, String idCart, String phone,
+                       String email, String address, int deleteFlag, CustomerType customerType, List<ContractDto> contractList) {
         this.customerName = customerName;
         this.birthday = birthday;
         this.customerCode = customerCode;
@@ -43,6 +44,7 @@ public class CustomerDto {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.deleteFlag = deleteFlag;
         this.customerType = customerType;
         this.contractList = contractList;
     }

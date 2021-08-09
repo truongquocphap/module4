@@ -18,6 +18,8 @@
 <div class="container-fluid row">
   <div th:replace="content :: content"></div>
   <form th:action="@{/service-create}" method="post" th:object="${serviceDto}">
+    <h4 style="color: #007bff">Create Service Page</h4>
+    <input type="hidden" th:field="*{deleteFlag}">
     <table>
       <tr>
         <td>Name:</td>

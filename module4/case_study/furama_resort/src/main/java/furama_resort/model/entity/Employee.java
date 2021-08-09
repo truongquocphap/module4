@@ -1,6 +1,5 @@
 package furama_resort.model.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +28,8 @@ public class Employee {
     private String employeeEmail;
     @Column(name = "employee_address")
     private String employeeAddress;
+    @Column(name = "delete_flag")
+    private int deleteFlag;
     @ManyToOne
     @JoinColumn(name = "position_id",referencedColumnName = "position_id")
     private Position position;
@@ -44,8 +45,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position,
-                    EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<Contract> contractList) {
+    public Employee(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag,
+                    Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<Contract> contractList) {
         this.employeeName = employeeName;
         this.birthday = birthday;
         this.employeeIdCart = employeeIdCart;
@@ -53,9 +54,24 @@ public class Employee {
         this.employeePhone = employeePhone;
         this.employeeEmail = employeeEmail;
         this.employeeAddress = employeeAddress;
+        this.deleteFlag = deleteFlag;
         this.position = position;
         this.educationEmployee = educationEmployee;
         this.divisionEmployee = divisionEmployee;
         this.contractList = contractList;
+    }
+
+    public Employee(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag, Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee) {
+        this.employeeName = employeeName;
+        this.birthday = birthday;
+        this.employeeIdCart = employeeIdCart;
+        this.employeeSalary = employeeSalary;
+        this.employeePhone = employeePhone;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.deleteFlag = deleteFlag;
+        this.position = position;
+        this.educationEmployee = educationEmployee;
+        this.divisionEmployee = divisionEmployee;
     }
 }

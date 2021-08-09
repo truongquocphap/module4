@@ -1,6 +1,5 @@
 package furama_resort.model.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

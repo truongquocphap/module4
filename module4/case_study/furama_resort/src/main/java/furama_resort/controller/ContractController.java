@@ -1,16 +1,11 @@
 package furama_resort.controller;
 
 import furama_resort.model.dto.ContractDto;
-import furama_resort.model.entity.Contract;
-import furama_resort.model.entity.Customer;
-import furama_resort.model.entity.Employee;
-import furama_resort.model.entity.Service;
-import furama_resort.model.service.IContractService;
-import furama_resort.model.service.ICustomerService;
-import furama_resort.model.service.IEmployeeService;
-import furama_resort.model.service.IServiceService;
+import furama_resort.model.entity.*;
+import furama_resort.model.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -32,6 +27,8 @@ public class ContractController {
     IEmployeeService employeeService;
     @Autowired
     IServiceService serviceService;
+    @Autowired
+    IContractDetailService contractDetailService;
     @ModelAttribute("customerList")
     public List<Customer> customerList(){
         return customerService.findAll();
@@ -68,6 +65,7 @@ public class ContractController {
         }
         Contract contract= new Contract();
         BeanUtils.copyProperties(contractDto,contract);
+        contract.setDeleteFlag(1);
         contractService.save(contract);
         return "redirect:/contract-list";
     }
@@ -92,7 +90,29 @@ public class ContractController {
     }
     @GetMapping("/contract-delete")
     public String delete(@RequestParam("id") Integer id){
-        contractService.deleteById(id);
+        contractService.findById(id).setDeleteFlag(0);
+        contractService.save(contractService.findById(id));
         return "redirect:/contract-list";
+    }
+    @GetMapping("/customer-use-service-list")
+    public String customerUseServiceList(@PageableDefault(value = 3) Pageable pageable, @RequestParam("search") Optional<String> name,
+                                         Model model){
+        String search="";
+        if (name.isPresent()){
+            search= name.orElse(null);
+        }
+        Page<Contract> contractPage=contractService.contractUseServiceList(pageable,search);
+        for (Contract contract: contractPage) {
+            List<ContractDetail> contractDetailList= contractDetailService.findAllByContract_ContractId(contract.getContractId());
+            Double totalMoney=contract.getService().getServiceCost()-contract.getContractDeposit();
+            for (ContractDetail contractDetail: contractDetailList) {
+                totalMoney+=contractDetail.getQuantity()*contractDetail.getAttachService().getAttachServiceCost();
+            }
+            contract.setContractTotalMoney(totalMoney);
+        }
+        model.addAttribute("contractDetailList",contractDetailService.contractDetailOtherList());
+        model.addAttribute("searchName",search);
+        model.addAttribute("contractUseServiceList",contractService.contractUseServiceList(pageable,search));
+        return "contract_use_service/list";
     }
 }

@@ -51,8 +51,10 @@ public class CustomerController {
             model.addAttribute("customerDto" , customerDto);
             return "customer/create";
         }
+        customerDto.setDeleteFlag(1);
         Customer customer= new Customer();
         BeanUtils.copyProperties(customerDto,customer);
+        customer.setDeleteFlag(1);
         customerService.save(customer);
         return "redirect:/customer-list";
     }
@@ -77,7 +79,8 @@ public class CustomerController {
     }
     @GetMapping("/customer-delete")
     public String delete(@RequestParam("id") Integer id){
-        customerService.deleteById(id);
+        customerService.findById(id).setDeleteFlag(0);
+        customerService.save(customerService.findById(id));
         return "redirect:/customer-list";
     }
 }

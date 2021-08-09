@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body>
+<header th:replace="header :: phapcp">
+</header>
+<div th:replace="header::carusel"></div>
+<div th:replace="header :: navs"></div>
+
+<div class="container-fluid row">
+  <div th:replace="content :: content">
+  </div>
+  <div class="col-9 table-responsive">
+    <table class="table table-dark ">
+      <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Contract Id</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Total money</th>
+        <th scope="col">Service Name</th>
+        <th scope="col">Attach Service</th>
+        <th scope="col"></th>
+        <th scope="col" style="column-span: 2">Action</th>
+      </tr>
+      </thead>
+      <th:block th:each="contractUseService , count: ${contractUseServiceList}">
+        <tr>
+          <td th:text="${count.count}"></td>
+          <th th:text="${contractUseService.contractId}"></th>
+          <td th:text="${contractUseService.customer.customerName}"></td>
+          <td th:text="${contractUseService.contractStartDate}"></td>
+          <td th:text="${contractUseService.contractEndDate}"></td>
+          <td th:text="${contractUseService.contractTotalMoney}"></td>
+          <td th:text="${contractUseService.service.serviceName}"></td>
+          <td>
+            <ul class="nav nav-pills">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+        <span th:each="contractDetail : ${contractDetailList}"
+              th:text="${contractDetail.contractId == contractUseService.contractId ? contractDetail.attachServiceName + ' - ' : ''}">
+        </span>
+                </a>
+                <div class="dropdown-menu">
+        <span class="dropdown-item" th:each="contractDetail : ${contractDetailList}"
+              th:text="${contractDetail.contractId == contractUseService.contractId ?
+              (contractDetail.attachServiceName + ' - Số lượng: ' + contractDetail.quantity) : ''}">
+        </span>
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button>
+              <a th:href="@{/contract-use-service-edit/__${contractUseService.contractId}__ }">Edit</a>
+
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                    th:onclick="|deleteContractUseService(${contractUseService.contractId})|">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </th:block>
+    </table>
+    <div>
+      <a class="btn btn-outline-success"
+         th:href="@{/contract-use-service-list(page=${contractUseServiceList.number - 1},search=${searchName})}"
+         th:if="${contractUseServiceList.hasPrevious()}">Previous</a>
+      <span th:each="contractUseService : ${#numbers.sequence(0,contractUseServiceList.totalPages - 1) }"
+            th:if="${contractUseServiceList.hasContent()}">
+          <a class="btn btn-outline-success" th:href="@{/contract-use-service-list(page=${contractUseService},search=${searchName})}"
+             th:text="${contractUseService+1}"
+             th:if="${(contractUseService>(contractUseServiceList.number)-1)&&(contractUseService<(contractUseServiceList.number+3))}"
+          ></a>
+            </span>
+      <a class="btn btn-outline-success"
+         th:href="@{/contract-use-service-list(page=${contractUseServiceList.number + 1},search=${searchName})}"
+         th:if="${contractUseServiceList.hasNext()}">Next</a>
+    </div>
+  </div>
+</div>
+<form action="/contract-delete">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <input type="hidden" id="id" name="id">
+        <div class="modal-body">
+          Bạn có muốn xoá không????
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  function deleteContract(id) {
+    document.getElementById('id').value = id;
+  }
+</script>
+<div th:replace="footer :: footer"></div>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>
