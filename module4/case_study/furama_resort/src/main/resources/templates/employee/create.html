@@ -20,6 +20,7 @@
     <form th:action="@{/employee-create}" method="post" th:object="${employeeDto}">
         <h4 style="color: #007bff">Create Employee Page</h4>
         <input type="hidden" th:field="*{deleteFlag}">
+        <input type="hidden" th:field="*{user}">
         <table>
             <tr>
                 <td>Name:</td>

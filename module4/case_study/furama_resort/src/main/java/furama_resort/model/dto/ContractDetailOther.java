@@ -5,6 +5,6 @@ import furama_resort.model.entity.Contract;
 public interface ContractDetailOther {
     Integer getContractDetailId();
     String getQuantity();
-    String getContractId();
+    Integer getContractId();
     String getAttachServiceName();
 }

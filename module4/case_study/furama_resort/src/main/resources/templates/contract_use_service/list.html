@@ -45,7 +45,7 @@
                 <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">
         <span th:each="contractDetail : ${contractDetailList}"
-              th:text="${contractDetail.contractId == contractUseService.contractId ? contractDetail.attachServiceName + ' - ' : ''}">
+              th:text="${contractDetail.contractId == contractUseService.contractId ? contractDetail.attachServiceName + ' - ' : ''}" style="color: white">
         </span>
                 </a>
                 <div class="dropdown-menu">

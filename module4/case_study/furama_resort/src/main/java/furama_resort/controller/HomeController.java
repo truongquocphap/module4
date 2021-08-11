@@ -10,4 +10,12 @@ public class HomeController {
     public String home(){
         return "home";
     }
+    @GetMapping("/login")
+    public String login(){
+        return "login/login_page";
+    }
+    @GetMapping("/403")
+    public String error(){
+        return "login/403";
+    }
 }

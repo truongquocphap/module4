@@ -3,6 +3,7 @@ package furama_resort.model.dto;
 import furama_resort.model.entity.DivisionEmployee;
 import furama_resort.model.entity.EducationEmployee;
 import furama_resort.model.entity.Position;
+import furama_resort.model.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +36,7 @@ public class EmployeeDto {
     private EducationEmployee educationEmployee;
     private DivisionEmployee divisionEmployee;
     private List<ContractDto> contractList;
+    private User user;
 
     public EmployeeDto() {
     }
@@ -55,8 +57,8 @@ public class EmployeeDto {
         this.contractList = contractList;
     }
 
-    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress,
-                       int deleteFlag, Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee) {
+    public EmployeeDto(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag, Position position,
+                       EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<ContractDto> contractList, User user) {
         this.employeeName = employeeName;
         this.birthday = birthday;
         this.employeeIdCart = employeeIdCart;
@@ -68,5 +70,7 @@ public class EmployeeDto {
         this.position = position;
         this.educationEmployee = educationEmployee;
         this.divisionEmployee = divisionEmployee;
+        this.contractList = contractList;
+        this.user = user;
     }
 }

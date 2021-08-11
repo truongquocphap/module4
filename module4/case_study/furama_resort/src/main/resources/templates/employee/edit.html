@@ -20,6 +20,7 @@
   <form th:action="@{/employee-edit}" method="post" th:object="${employeeDto}">
     <table>
       <input type="hidden" th:field="*{employeeId}">
+      <input type="hidden" th:field="*{user}">
       <tr>
         <td>Name:</td>
         <td><input type="text" th:field="*{employeeName}"/>

@@ -67,6 +67,7 @@ public class EmployeeController {
         Employee employee= new Employee();
         BeanUtils.copyProperties(employeeDto,employee);
         employee.setDeleteFlag(1);
+        employee.getUser().setId(1L);
         employeeService.save(employee);
         return "redirect:/employee-list";
     }

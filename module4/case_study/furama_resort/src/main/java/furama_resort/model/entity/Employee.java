@@ -1,5 +1,6 @@
 package furama_resort.model.entity;
 
+import furama_resort.model.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +42,9 @@ public class Employee {
     private DivisionEmployee divisionEmployee;
     @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
     private List<Contract> contractList;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
 
     public Employee() {
     }
@@ -61,7 +65,8 @@ public class Employee {
         this.contractList = contractList;
     }
 
-    public Employee(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag, Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee) {
+    public Employee(String employeeName, String birthday, String employeeIdCart, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, int deleteFlag,
+                    Position position, EducationEmployee educationEmployee, DivisionEmployee divisionEmployee, List<Contract> contractList, User user) {
         this.employeeName = employeeName;
         this.birthday = birthday;
         this.employeeIdCart = employeeIdCart;
@@ -73,5 +78,7 @@ public class Employee {
         this.position = position;
         this.educationEmployee = educationEmployee;
         this.divisionEmployee = divisionEmployee;
+        this.contractList = contractList;
+        this.user = user;
     }
 }

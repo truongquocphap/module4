@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,7 +8,11 @@
 <body>
 <nav class="navbar navbar-light bg-light" style="height: 60px;background-color: blueviolet" th:fragment="phapcp">
     <a class="navbar-brand"><img src="img/p.jpg" style="height: 60px" width="50px"></a>
-    <h1 style="font-family: Parisienne, Papyrus;color: #6f42c1" >PhÁpCP</h1>
+    <h1 style="font-family: Parisienne, Papyrus;color: #6f42c1" >PhÁpCP Resort</h1>
+    <div sec:authorize="isAuthenticated()">Hello  <span sec:authentication="name" style="font-family: Parisienne, Papyrus"></span>
+        <a class="btn btn-danger flex-md-grow-0" href="/logout" role="button">Logout</a>
+    </div>
+
 </nav>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" th:fragment="carusel">
     <ol class="carousel-indicators">

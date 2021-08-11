@@ -13,11 +13,11 @@ public interface IContractDetailRepository extends JpaRepository<ContractDetail,
     @Query(value = "select * from contract_detail join contract on contract_detail.contract_id=contract.contract_id" +
                    " where concat(contract.contract_start_date,contract.contract_end_date) like  %?1% and contract_detail.delete_flag = 1",nativeQuery = true)
     Page<ContractDetail> contractDetailList(String name, Pageable pageable);
-    @Query(value = " select contract_detail.contract_detail_id as contractDetailId , sum(contract_detail.contract_quantity) as quantity," +
+    @Query(value = " select sum(contract_detail.contract_quantity) as quantity," +
             " contract_detail.attach_service_id as attachServiceId , contract_detail.contract_id as contractId," +
             " attach_service.attach_service_name as attachServiceName" +
             " from contract_detail " +
-            "join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id" +
+            " join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id" +
             " group by contract_detail.attach_service_id , contract_detail.contract_id",nativeQuery = true)
     List<ContractDetailOther> contractDetailOtherList();
     List<ContractDetail> findAllByContract_ContractId(Integer id);
