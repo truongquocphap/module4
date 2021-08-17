@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+<body style="font-family: Parisienne, Papyrus">
+
+<div class="container-fluid row">
+    <div>
+<!--        <div class="alert alert-primary" role="alert" th:if="${mess}" style="margin-top: 20px">-->
+<!--            <span th:text="${mess}"></span>-->
+<!--        </div>-->
+        <table class="table table-dark ">
+            <a href="/customer-create" class="btn btn-primary flex-md-grow-0" role="button"
+               style="color: #171a1d;margin: 10px 0 10px 0">Thêm Phim</a>
+            <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên Phim</th>
+                <th scope="col">Mã Phim</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Ngày chiếu</th>
+                <th scope="col"></th>
+                <th scope="col" style="column-span: 2">Action</th>
+            </tr>
+            </thead>
+            <th:block th:each="rapPhim , count: ${rapPhimList}">
+                <tr>
+                    <td th:text="${count.count}"></td>
+                    <th th:text="${rapPhim.customerName}"></th>
+                    <td th:text="${rapPhim.email}"></td>
+                    <td th:text="${rapPhim.address}"></td>
+                    <td th:text="${rapPhim.customerCode}"></td>
+                    <td>
+                        <a class="btn btn-danger flex-md-grow-0" th:href="@{/edit/__${rapPhim.id}__ }"
+                           role="button">Edit</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                th:onclick="|deleteRapPhim(${rapPhim.id})|">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <div>
+            <a class="btn btn-outline-success"
+               th:href="@{/list(page=${rapPhimList.number - 1},search=${searchName})}"
+               th:if="${rapPhimList.hasPrevious()}">Previous</a>
+            <span th:each="rapPhim : ${#numbers.sequence(0,rapPhimList.totalPages - 1) }"
+                  th:if="${rapPhimList.hasContent()}">
+          <a class="btn btn-outline-success" th:href="@{/list(page=${rapPhim},search=${searchName})}"
+             th:text="${customer+1}"
+             th:if="${(rapPhim>(rapPhimList.number)-1)&&(rapPhim<(rapPhimList.number+3))}"
+          ></a>
+            </span>
+            <a class="btn btn-outline-success"
+               th:href="@{/list(page=${rapPhimList.number + 1},search=${searchName})}"
+               th:if="${rapPhimList.hasNext()}">Next</a>
+        </div>
+    </div>
+</div>
+<form action="/customer-delete">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="id" name="id">
+                <div class="modal-body">
+                    Bạn có muốn xoá không????
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function deleteRapPhim(id) {
+        document.getElementById('id').value = id;
+    }
+</script>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>

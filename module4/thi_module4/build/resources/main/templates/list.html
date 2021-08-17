@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+</head>
+
+<body style="font-family: Parisienne, Papyrus">
+<div>
+    <a href="/create" class="btn btn-primary flex-md-grow-0" role="button"
+       style="color: #171a1d;margin: 10px 0 10px 0">
+        Thêm Giao Dịch</a>
+    <form class="form-inline" action="/" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+<table class="table table-dark ">
+    <thead>
+    <tr>
+        <th scope="col">Mã Giao Dịch</th>
+        <th scope="col">Tên Khách Hàng</th>
+        <th scope="col">Ngày Giao Dịch</th>
+        <th scope="col">Loại Dịch Vụ</th>
+        <th scope="col">Đơn Giá(VND/m2)</th>
+        <th scope="col">Diện Tích(m2)</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <th:block th:each="giaoDich , count: ${giaoDichList}">
+        <tr>
+            <th th:text="${giaoDich.maDichVu}"></th>
+            <td th:text="${giaoDich.khachHang.tenKhachHang}"></td>
+            <td th:text="${giaoDich.ngayGiaoDich}"></td>
+            <td th:if="${giaoDich.loaiDichVu}=='1'"> Đất</td>
+            <td th:if="${giaoDich.loaiDichVu}=='2'">Nhà Đất</td>
+            <td th:text="${giaoDich.donGia}"></td>
+            <td th:text="${giaoDich.dienTich}"></td>
+            <td>
+                <a class="btn btn-danger flex-md-grow-0" th:href="@{view/__${giaoDich.giaoDichId}__ }" role="button">View</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/jquery/popper.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</body>
+</html>
