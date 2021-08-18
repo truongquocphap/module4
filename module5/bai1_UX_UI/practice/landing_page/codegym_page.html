@@ -20,162 +20,111 @@
     />
 </head>
 <body>
-<nav class="navbar navbar-expand-lg ">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #282881;">
     <!-- Container wrapper -->
-    <div class="container-fluid" style="background-color: #282881">
-        <img style="margin-left: 100px"
-
-             src="https://codegym.vn/wp-content/uploads/2021/08/CodeGym-Logo.webp" width="290" height="50"
-             class="me-2"
-             alt=""
-             loading="lazy"
-        />
-        </a>
+    <div class="container-fluid">
         <!-- Toggle button -->
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarCenteredExample"
-                aria-controls="navbarCenteredExample"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
 
         <!-- Collapsible wrapper -->
-        <div
-                class="collapse navbar-collapse justify-content-center"
-                id="navbarCenteredExample"
-        >
-            <!-- Left links -->
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <!-- Navbar dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                            style="color: white"
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        KHOÁ HỌC
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <img style="margin-left: 10%"
 
-                <li class="nav-item dropdown">
-                    <a
-                            style="color: white"
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        TRUNG TÂM
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a
-                            style="color: white"
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        BLOG
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="#"
-                       style="color: white"
-                    >TIN TỨC</a
-                    >
-                </li>
-                <li class="nav-item dropdown">
-                    <a
-                            style="color: white"
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        GIỚI THIỆU
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Left links -->
+                 src="https://codegym.vn/wp-content/uploads/2021/08/CodeGym-Logo.webp" width="290" height="50"
+                 class="me-2"
+                 alt=""
+                 loading="lazy"
+            />
+            <div style="margin-left: 20%">
+                <ul class="navbar-nav ml-5">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-mdb-toggle="dropdown" aria-expanded="false">
+                            KHÓA HỌC
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">NGƯỜI MỚI BẮT ĐẦU</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">NGƯỜI ĐÃ BIẾT LẬP TRÌNH</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" style="color: red">TẠI SAO NÊN CHỌN CODEGYM ?</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-mdb-toggle="dropdown"
+                           aria-expanded="false">
+                            TRUNG TÂM
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">CODEGYM HÀ NỘI</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">CODEGYM ĐÀ NẴNG</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">CODEGYM HUẾ</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-mdb-toggle="dropdown"
+                           aria-expanded="false">
+                            BLOG
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">BÀI VIẾT CHUYÊN MÔN</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">BÀI GIẢNG LẬP TRÌNH</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">TÀI LIỆU LẬP TRÌNH</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a style="color: white" class="nav-link" href="#" role="button" aria-expanded="false">
+                        TIN TỨC
+                    </a></li>
+                    <li class="nav-item dropdown">
+                        <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-mdb-toggle="dropdown"
+                           aria-expanded="false">
+                            GIỚI THIỆU
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">LIÊN HỆ</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">TUYỂN DỤNG</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">CÂU HỎI THƯỜNG GẶP</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <div><i class="fas fa-search" style="color: white;margin: 10px"></i></div>
+                </ul>
+            </div>
         </div>
-
-        <i class="fas fa-search" style="margin-right: 200px;color: white"></i>
+        <!-- Right elements -->
     </div>
+    <!-- Container wrapper -->
 </nav>
+
+<!-- Navbar -->
 
 <div id="carouselExampleTouch" class="carousel slide" data-mdb-touch="false">
     <div class="carousel-indicators">
@@ -422,7 +371,7 @@
 </div>
 <div class="card mb-3">
 
-    <i class="fas fa-diagnoses fa-5x" style="margin-left: 50%;color: darkorange"></i>
+    <i class="fas fa-diagnoses fa-5x" style="margin-left: 45%;color: darkorange"></i>
     <div class="card-body" style="text-align: center;margin: 0 100px">
         <h4 class="card-title" style="color: black">Dịch vụ việc làm tại CodeGym</h4>
         <p class="card-text">
