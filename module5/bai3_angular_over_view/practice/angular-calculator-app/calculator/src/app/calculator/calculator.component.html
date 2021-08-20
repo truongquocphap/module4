@@ -1,0 +1,29 @@
+<p>Awesome Calculator</p>
+<div>
+  NumberOne:
+  <input type="number" class="form-control"
+         [value]="first"
+         (change)="onFirstChange($event.target.value)"
+  >
+  <br>
+  Operator:
+  <select [value]="operator" class="form-control"
+          (change)="onSelectChange($event.target.value)">
+    <option value="+" class="form-control">+</option>
+    <option value="-" class="form-control">-</option>
+    <option value="*" class="form-control">*</option>
+    <option value="/" class="form-control">/</option>
+  </select>
+  <br>
+  NumberTwo:
+  <input type="number" class="form-control"
+         [value]="second"
+         (change)="onSecondChange($event.target.value)">
+
+</div>
+<div>
+  <button (click)="calculator()"> Tính toán</button>
+</div>
+<div>
+  Kết Quả: {{output}}
+</div>
