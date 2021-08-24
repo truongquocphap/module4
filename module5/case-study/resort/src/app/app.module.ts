@@ -25,6 +25,7 @@ import { ServiceListComponent } from './service/service-list/service-list.compon
 import { ServiceCreateComponent } from './service/service-create/service-create.component';
 import { ServiceUpdateComponent } from './service/service-update/service-update.component';
 import { ServiceViewComponent } from './service/service-view/service-view.component';
+import { CustomerTypeComponent } from './customer-type/customer-type.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ServiceViewComponent } from './service/service-view/service-view.compon
     ServiceListComponent,
     ServiceCreateComponent,
     ServiceUpdateComponent,
-    ServiceViewComponent
+    ServiceViewComponent,
+    CustomerTypeComponent
   ],
   imports: [
     BrowserModule,

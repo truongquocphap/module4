@@ -2,21 +2,35 @@
 <table class="table table-success ">
   <thead>
   <tr>
-    <td colspan="11"> Contract List</td>
+    <td colspan="10"> Contract List</td>
   </tr>
   <tr>
     <th scope="col">STT</th>
     <th scope="col">Start Date</th>
     <th scope="col">End Date</th>
-    <th scope="col">Customer Name</th>
-    <th scope="col">Customer Code</th>
-    <th scope="col">Employee Name</th>
+    <th scope="col">Customer ID</th>
+<!--    <th scope="col">Customer Code</th>-->
+    <th scope="col">Employee ID</th>
     <th scope="col">Deposit</th>
-    <th scope="col">Total money</th>
-    <th scope="col">Service Name</th>
+    <th scope="col">Total Money</th>
+    <th scope="col">Service ID</th>
     <th scope="col"></th>
     <th scope="col" style="column-span: 2">Action</th>
   </tr>
   </thead>
-
+  <tbody>
+  <tr *ngFor="let c of contract,let i=index">
+    <th scope="col">{{i+1}}</th>
+    <th scope="col">{{c.contractStartDate}}</th>
+    <th scope="col">{{c.contractEndDate}}</th>
+    <th scope="col">{{c.customerId}}</th>
+<!--    <th scope="col">Customer Code</th>-->
+    <th scope="col">{{c.employeeId}}</th>
+    <th scope="col">{{c.contractDeposit}}</th>
+    <th scope="col">{{c.contractTotalMoney}}</th>
+    <th scope="col">{{c.serviceId}}</th>
+    <th scope="col"></th>
+    <th scope="col" colspan="2">Action</th>
+  </tr>
+  </tbody>
 </table>

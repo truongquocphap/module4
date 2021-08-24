@@ -3,7 +3,7 @@
 <table class="table table-success ">
   <thead>
   <tr>
-    <th style="color: black;column-span: 12">Customer List</th>
+    <th style="color: black;" colspan="12">Customer List</th>
   </tr>
   <tr>
     <th scope="col">STT</th>
@@ -17,7 +17,29 @@
     <th scope="col">Customer Code</th>
     <th scope="col">Customer Type</th>
     <th scope="col"></th>
-    <th scope="col" style="column-span: 2">Action</th>
+    <th scope="col" colspan="2">Action</th>
   </tr>
   </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers , let i=index">
+    <th scope="col">{{i + 1}}</th>
+    <th scope="col">{{customer.customerName}}</th>
+    <th scope="col">{{customer.birthday}}</th>
+    <th scope="col" *ngIf="customer.gender===1 ">Male</th>
+    <th scope="col" *ngIf="customer.gender===2 ">FeMale</th>
+    <th scope="col" *ngIf="customer.gender===0 ">No Gender</th>
+    <th scope="col">{{customer.idCart}}</th>
+    <th scope="col">{{customer.phone}}</th>
+    <th scope="col">{{customer.email}}</th>
+    <th scope="col">{{customer.address}}</th>
+    <th scope="col">{{customer.customerCode}}</th>
+    <th scope="col" >
+      <span *ngFor="let customerTypes of customerType">
+      <p *ngIf="customer.customerTypeId===customerTypes.customerTypeId"> {{customerTypes.customerTypeName}}</p>
+      </span>
+    </th>
+    <th scope="col"></th>
+    <th scope="col" colspan="2">Action</th>
+  </tr>
+  </tbody>
 </table>
