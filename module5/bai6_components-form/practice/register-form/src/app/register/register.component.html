@@ -17,10 +17,10 @@
          (loginForm.get('checkPassword').get('password').dirty ||
           (loginForm.get('checkPassword').get('password').touched))">
       <div [hidden]="!loginForm.get('checkPassword').get('password').errors.required">
-        <p style="color: red">Confirm Password is required!</p>
+        <p style="color: red">Password phải 6 ký tự!!!</p>
       </div>
       <div [hidden]="loginForm.get('checkPassword').get('password').errors.minLength">
-        <p style="color: red">Invalid confirm password length (min=6)!</p>
+        <p style="color: red">Password phải 6 ký tự!!!</p>
       </div>
     </div>
     <div>
