@@ -1,68 +1,69 @@
-<form method="post" style="margin-left: 300px">
+<form  style="margin-left: 300px" [formGroup]="createCustomer" (click)="addCustomer()">
   <h4 style="color: #007bff">Create Customer Page</h4>
   <input type="hidden" >
   <table >
     <tr >
       <td>Name:</td>
-      <td><input type="text" class="form-control"/>
-        <p ></p>
+      <td><input type="text" class="form-control" formGroupName="customerName"/>
+        <div *ngIf="!customerName.valid && (customerName.dirty || customerName.touched ) ">
+          <div [hidden]="!customerName.errors.required">
+            <p style="color: red">Tên nhóm thuốc không được để trống.</p>
+          </div>
+        </div>
       </td>
-
 
     </tr>
     <tr>
       <td>Birthday:</td>
-      <td><input type="date" /></td>
+      <td><input type="date" formGroupName="birthday"/></td>
     </tr>
     <tr>
       <td>Gender:</td>
       <td>
-        <select>
-          <option>Male</option>
-          <option>Female</option>
-          <option >No Gender</option>
+        <select >
+          <option value="1" formGroupName="gender"> Male</option>
+          <option value="2" formGroupName="gender">Female</option>
+          <option value="0" formGroupName="gender">No Gender</option>
         </select>
       </td>
     </tr>
     <tr>
       <td>Id Card:</td>
-      <td><input type="text" class="form-control"/>
+      <td><input type="text" class="form-control" formGroupName="idCart"/>
         <p ></p>
       </td>
 
     </tr>
     <tr>
       <td>Phone:</td>
-      <td><input type="text" class="form-control"/>
+      <td><input type="text" class="form-control" formGroupName="phone"/>
         <p ></p>
       </td>
 
     </tr>
     <tr>
       <td>Email:</td>
-      <td><input type="text" class="form-control"/>
+      <td><input type="text" class="form-control" formGroupName="email"/>
         <p ></p>
       </td>
 
     </tr>
     <tr>
       <td>Address:</td>
-      <td><input type="text" class="form-control"/>
+      <td><input type="text" class="form-control" formGroupName="address"/>
         <p ></p>
       </td>
     </tr>
     <tr>
       <td>Code:</td>
-      <td><input type="text" class="form-control"/>
+      <td><input type="text" class="form-control" formGroupName="customerCode"/>
         <p ></p>
       </td>
     </tr>
     <tr>
-      <td>Customer Type:</td>
+      <td>Customer Type Id:</td>
       <td>
-        <select >
-          <option ></option>
-        </select>
+        <input type="text" class="form-control" formGroupName="customerTypeId"/>
       </td>
     </tr>
     <tr>

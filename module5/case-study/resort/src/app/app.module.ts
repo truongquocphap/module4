@@ -26,6 +26,7 @@ import { ServiceCreateComponent } from './service/service-create/service-create.
 import { ServiceUpdateComponent } from './service/service-update/service-update.component';
 import { ServiceViewComponent } from './service/service-view/service-view.component';
 import { CustomerTypeComponent } from './customer-type/customer-type.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -53,10 +54,11 @@ import { CustomerTypeComponent } from './customer-type/customer-type.component';
     ServiceViewComponent,
     CustomerTypeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

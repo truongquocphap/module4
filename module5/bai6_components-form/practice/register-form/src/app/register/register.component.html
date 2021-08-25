@@ -1,0 +1,94 @@
+<form [formGroup]="loginForm" style="margin: 200px">
+  <div>
+    Email :
+    <input type="text" class="form-control" formControlName="email">
+    <p style="color: red"
+       *ngIf="loginForm.controls.email.hasError('email') &&
+     loginForm.controls.email.touched">
+      Nhập Email đúng định dạng!!!
+    </p>
+  </div>
+  <div formGroupName="checkPassword">
+
+    Password:
+    <input type="password" placeholder="Password" class="form-control" formControlName="password">
+    <div
+      *ngIf="loginForm.get('checkPassword').get('password').invalid &&
+         (loginForm.get('checkPassword').get('password').dirty ||
+          (loginForm.get('checkPassword').get('password').touched))">
+      <div [hidden]="!loginForm.get('checkPassword').get('password').errors.required">
+        <p style="color: red">Confirm Password is required!</p>
+      </div>
+      <div [hidden]="loginForm.get('checkPassword').get('password').errors.minLength">
+        <p style="color: red">Invalid confirm password length (min=6)!</p>
+      </div>
+    </div>
+    <div>
+      Confirm Password:
+      <input type="password" placeholder="Confirm Password" class="form-control" formControlName="confirmPassword">
+      <div
+        *ngIf="loginForm.get('checkPassword').get('confirmPassword').invalid &&
+         (loginForm.get('checkPassword').get('confirmPassword').dirty ||
+          (loginForm.get('checkPassword').get('confirmPassword').touched))">
+        <div [hidden]="!loginForm.get('checkPassword').get('confirmPassword').errors.required">
+          <p style="color: red">Confirm Password is required!</p>
+        </div>
+        <div [hidden]="loginForm.get('checkPassword').get('confirmPassword').errors.minLength">
+          <p style="color: red">Invalid confirm password length (min=6)!</p>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="loginForm.controls.checkPassword.hasError('errorPass') &&
+      (loginForm.get('checkPassword').get('confirmPassword').dirty||
+      loginForm.get('checkPassword').get('confirmPassword').touched)"
+      style="color: red">
+      Mời nhập pass trùng với khi khởi tạo!!!!
+    </div>
+  </div>
+
+  Gender:
+  <select class="form-control" formControlName="gender">
+    <option value="1">Male</option>
+    <option value="2">Female</option>
+    <option value="0">NoGender</option>
+  </select>
+  <p style="color: red"
+     *ngIf="loginForm.controls.gender.hasError('required') &&
+     loginForm.controls.gender.dirty">
+    Mời chọn 1 trong 3 Ô!!!
+  </p>
+  <div class="form-control">
+    Age:
+    <input type="number" class="form-control" formControlName="age">
+  </div>
+  <p style="color: red"
+     *ngIf="loginForm.controls.age.hasError('min') &&
+     loginForm.controls.age.dirty">
+    Bạn chưa đủ 18 tuổi!!!
+  </p>
+  <div class="form-control">
+    Country:
+    <div>
+      Quang Ngai
+      <input type="radio" value="Quang Ngai" formControlName="country">
+      Quang Nam
+      <input type="radio" value="Quang Nam" formControlName="country">
+    </div>
+  </div>
+  <p style="color: red"
+     *ngIf="loginForm.controls.country.hasError('required') &&
+     loginForm.controls.country.pristine">
+    Mời chọn 1 trong 2 Ô!!!
+  </p>
+  <div>
+    Phone:
+    <input type="text" class="form-control" formControlName="phone">
+  </div>
+  <p style="color: red"
+     *ngIf="loginForm.controls.phone.hasError('pattern') &&
+     loginForm.controls.phone.dirty">
+    Mời nhập đúng định dạng bắt đầu với +84, và theo sau là 9 đến 10 chữ số!!!
+  </p>
+  <button (click)="getLoginForm()"> Submit</button>
+</form>

@@ -8,7 +8,8 @@ import {ICustomerType} from "../../customer-type/icustomer-type";
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-  customers: Array<ICustomer>=[{
+
+  customersList: Array<ICustomer>=[{
     customerId: 1,customerName: 'PhapCP',birthday: '1111-11-11',customerCode: 'KH-1111',gender: 1,idCart: '00000',phone: '090000',email: 'phapcp@gmail.com',address: 'Qang ngai',customerTypeId : 2
   },
     {
@@ -22,6 +23,9 @@ export class CustomerListComponent implements OnInit {
       customerTypeId: 2,customerTypeName: 'Diamond'
     }
   ]
+
+
+
   constructor() { }
 
   ngOnInit(): void {
