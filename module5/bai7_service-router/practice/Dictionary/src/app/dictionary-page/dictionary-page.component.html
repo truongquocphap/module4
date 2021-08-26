@@ -1,0 +1,14 @@
+<h3>Bảng kiểm tra từ điển tiếng anh chi tiết</h3>
+<table>
+  <tr *ngFor="let w of wordList">
+    <th>
+      Word Name:
+    </th>
+    <th>
+      {{w.word}}
+    </th>
+    <th>
+      <a [routerLink]="['/dictionary-detail',w.word]"> Chi tiết</a>
+    </th>
+  </tr>
+</table>
