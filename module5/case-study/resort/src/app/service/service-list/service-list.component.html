@@ -1,4 +1,4 @@
-<a href="/service-create" class="btn btn-warning" role="button" style="margin: 10px 0 10px 0">Create Service</a>
+<a [routerLink]="['/service-create']" class="btn btn-warning" role="button" style="margin: 10px 0 10px 0">Create Service</a>
 <table class="table table-success">
   <thead>
   <tr>
@@ -35,16 +35,18 @@
     <th scope="col">{{s.numberFloors}}</th>
     <th scope="col">
       <span *ngFor="let rt of rentType">
-        <p *ngIf="s.rentTypeId===rt.rentTypeId">{{rt.rentTypeName}}</p>
+        <p *ngIf="s.rentTypeId===rt.id">{{rt.rentTypeName}}</p>
       </span>
     </th>
     <th scope="col">
        <span *ngFor="let st of serviceType">
-        <p *ngIf="s.rentTypeId===st.serviceTypeId">{{st.serviceTypeName}}</p>
+        <p *ngIf="s.rentTypeId===st.id">{{st.serviceTypeName}}</p>
       </span>
     </th>
-    <th></th>
-    <th scope="col" style="column-span: 2">Action</th>
+    <th>
+      <a [routerLink]="['/service-edit',s.id]" class="btn btn-warning" role="button"> Edit</a>
+    </th>
+    <th scope="col" [routerLink]="['/service-delete',s.id]" class="btn btn-danger" role="button">Delete</th>
   </tr>
   </tbody>
 </table>

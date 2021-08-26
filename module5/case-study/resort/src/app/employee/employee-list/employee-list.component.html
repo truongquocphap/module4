@@ -1,53 +1,58 @@
-
-  <a href="/employee-create" class="btn btn-warning" role="button" style="margin: 10px 0 10px 0">Create Employee</a>
-<table class="table table-success ">
+<a [routerLink]="['/employee-create']" class="btn btn-warning" role="button" style="margin: 10px 0 10px 0">Create Employee</a>
+<div class="table-responsive">
+<table class="table table-success" >
   <thead>
   <tr>
     <th style="color: black" colspan="13">Employee List</th>
   </tr>
   <tr>
-    <th scope="col">STT</th>
-    <th scope="col">Name</th>
-    <th scope="col">Birthday</th>
-    <th scope="col">Id Card</th>
-    <th scope="col">Salary</th>
-    <th scope="col">Phone</th>
-    <th scope="col">Email</th>
-    <th scope="col">Address</th>
-    <th scope="col">IPosition</th>
-    <th scope="col">Ieducation</th>
-    <th scope="col">Idivision</th>
-    <th scope="col"></th>
-    <th scope="col" style="column-span: 2">Action</th>
+    <th >STT</th>
+    <th >Name</th>
+    <th >Birthday</th>
+    <th >Id Card</th>
+    <th >Salary</th>
+    <th >Phone</th>
+    <th >Email</th>
+    <th >Address</th>
+    <th >IPosition</th>
+    <th >Ieducation</th>
+    <th >Idivision</th>
+    <th ></th>
+    <th  style="column-span: 2">Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let ep of employee,let i = index">
-    <th scope="col">{{i+1}}</th>
-    <th scope="col">{{ep.employeeName}}</th>
-    <th scope="col">{{ep.birthday}}</th>
-    <th scope="col">{{ep.employeeIdCart}}</th>
-    <th scope="col">{{ep.employeeSalary}}</th>
-    <th scope="col">{{ep.employeePhone}}</th>
-    <th scope="col">{{ep.employeeEmail}}</th>
-    <th scope="col">{{ep.employeeAddress}}</th>
-    <th scope="col">
+    <th >{{i + 1}}</th>
+    <th >{{ep.employeeName}}</th>
+    <th >{{ep.birthday}}</th>
+    <th >{{ep.employeeIdCart}}</th>
+    <th >{{ep.employeeSalary}}</th>
+    <th >{{ep.employeePhone}}</th>
+    <th >{{ep.employeeEmail}}</th>
+    <th >{{ep.employeeAddress}}</th>
+    <th >
        <span *ngFor="let po of position">
-      <p *ngIf="ep.positionId===po.positionId"> {{po.positionName}}</p>
+      <p *ngIf="ep.positionId===po.id"> {{po.positionName}}</p>
       </span>
     </th>
-    <th scope="col">
+    <th >
        <span *ngFor="let edu of education">
-      <p *ngIf="ep.educationEmployeeId===edu.educationId"> {{edu.educationName}}</p>
+      <p *ngIf="ep.educationEmployeeId===edu.id"> {{edu.educationName}}</p>
       </span>
     </th>
-    <th scope="col">
+    <th >
      <span *ngFor="let di of division">
-      <p *ngIf="ep.divisionEmployeeId===di.divisionId"> {{di.divisionName}}</p>
+      <p *ngIf="ep.divisionEmployeeId===di.id"> {{di.divisionName}}</p>
       </span>
     </th>
-    <th scope="col"></th>
-    <th scope="col" style="column-span: 2">Action</th>
+    <th >
+      <a [routerLink]="['/employee-edit',ep.id]" class="btn btn-warning" role="button">Edit</a>
+    </th>
+    <th >
+      <a [routerLink]="['/employee-delete',ep.id]" class="btn btn-danger" role="button">Delete</a>
+    </th>
   </tr>
   </tbody>
 </table>
+</div>

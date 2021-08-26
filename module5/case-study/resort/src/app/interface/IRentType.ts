@@ -1,5 +1,5 @@
 export interface IRentType {
-  rentTypeId ?: number;
+  id ?: number;
   rentTypeName ?: string;
   rentTypeCost ?: number;
 }

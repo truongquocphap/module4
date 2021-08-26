@@ -1,4 +1,4 @@
 export interface IPosition {
-  positionId ?: number;
+  id ?: number;
   positionName?: string;
 }

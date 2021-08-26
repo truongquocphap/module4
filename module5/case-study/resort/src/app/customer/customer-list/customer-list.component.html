@@ -1,5 +1,4 @@
-
-  <a href="/customer-create" class="btn btn-warning" role="button">Create Customer</a>
+<a [routerLink]="['/customer-create']" class="btn btn-warning" role="button">Create Customer</a>
 <table class="table table-success ">
   <thead>
   <tr>
@@ -33,13 +32,17 @@
     <th scope="col">{{customer.email}}</th>
     <th scope="col">{{customer.address}}</th>
     <th scope="col">{{customer.customerCode}}</th>
-    <th scope="col" >
+    <th scope="col">
       <span *ngFor="let customerTypes of customerType">
-      <p *ngIf="customer.customerTypeId===customerTypes.customerTypeId"> {{customerTypes.customerTypeName}}</p>
+      <p *ngIf="customer.id===customerTypes.id"> {{customerTypes.customerTypeName}}</p>
       </span>
     </th>
-    <th scope="col"></th>
-    <th scope="col" colspan="2">Action</th>
+    <th scope="col">
+      <a [routerLink]="['/customer-edit',customer.id]" class="btn btn-warning" role="button"> Edit</a>
+    </th>
+    <th scope="col">
+      <a [routerLink]="['/customer-delete',customer.id]" class="btn btn-danger" role="button"> Delete</a>
+    </th>
   </tr>
   </tbody>
 </table>

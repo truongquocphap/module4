@@ -1,5 +1,8 @@
+import {IServiceType} from "./iservice-type";
+import {IRentType} from "./IRentType";
+
 export interface IService {
-  serviceId?: number;
+  id?: number;
   serviceName?: string;
   serviceArea?: number;
   serviceCost?: number;
@@ -9,6 +12,6 @@ export interface IService {
   poolArea?: number;
   numberFloors?: number;
   serviceCode?: string;
-  serviceTypeId?: number;
-  rentTypeId?: number;
+  serviceType?: IServiceType;
+  rentType?: IRentType;
 }

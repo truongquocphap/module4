@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ICustomer} from "../icustomer";
-import {ICustomerType} from "../../customer-type/icustomer-type";
+import {ICustomer} from "../../interface/icustomer";
+import {ICustomerType} from "../../interface/icustomer-type";
 
 @Component({
   selector: 'app-customer-list',
@@ -9,22 +9,8 @@ import {ICustomerType} from "../../customer-type/icustomer-type";
 })
 export class CustomerListComponent implements OnInit {
 
-  customersList: Array<ICustomer>=[{
-    customerId: 1,customerName: 'PhapCP',birthday: '1111-11-11',customerCode: 'KH-1111',gender: 1,idCart: '00000',phone: '090000',email: 'phapcp@gmail.com',address: 'Qang ngai',customerTypeId : 2
-  },
-    {
-      customerId: 2,customerName: 'PhapCP',birthday: '1111-11-11',customerCode: 'KH-1111',gender: 1,idCart: '00000',phone: '090000',email: 'phapcp@gmail.com',address: 'Qang ngai',customerTypeId: 2
-    }];
-  customerType: Array<ICustomerType>=[
-    {
-      customerTypeId: 1,customerTypeName: 'Vip'
-    },
-    {
-      customerTypeId: 2,customerTypeName: 'Diamond'
-    }
-  ]
-
-
+  customersList: ICustomer[]=[];
+  customerType: ICustomerType[]=[];
 
   constructor() { }
 

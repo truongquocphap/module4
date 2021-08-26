@@ -37,13 +37,13 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-link active link" href="/">Home |<span class="sr-only"></span></a>
-      <a class="nav-link link" href="/employee-list"> Employee |</a>
-      <a class="nav-link link" href="/customer-list"> Customer |</a>
-      <a class="nav-link link" href="/service-list"> Service |</a>
-      <a class="nav-link link" href="/contract-list"> Contract |</a>
-      <a class="nav-link link" href="/contract-detail-list"> Contract Detail |</a>
-      <a class="nav-link link" href="/customer-use-service-list"> Customer Use Service </a>
+      <a class="nav-link active link" [routerLink]="['']">Home |<span class="sr-only"></span></a>
+      <a class="nav-link link" [routerLink]="['/employee-list']"> Employee |</a>
+      <a class="nav-link link" [routerLink]="['/customer-list']"> Customer |</a>
+      <a class="nav-link link" [routerLink]="['/service-list']"> Service |</a>
+      <a class="nav-link link" [routerLink]="['/contract-list']"> Contract |</a>
+      <a class="nav-link link" [routerLink]="['/contract-detail-list']"> Contract Detail |</a>
+      <a class="nav-link link" [routerLink]="['/customer-use-service-list']"> Customer Use Service </a>
     </div>
   </div>
 </nav>

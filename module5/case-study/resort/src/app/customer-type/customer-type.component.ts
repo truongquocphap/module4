@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ICustomerType} from "./icustomer-type";
+import {ICustomerType} from "../interface/icustomer-type";
 
 @Component({
   selector: 'app-customer-type',
@@ -9,13 +9,13 @@ import {ICustomerType} from "./icustomer-type";
 export class CustomerTypeComponent implements OnInit {
   @Input()
   customerType: Array<ICustomerType> = [{
-    customerTypeId: 1, customerTypeName: 'Thường'
+    id: 1, customerTypeName: 'Thường'
   },
     {
-    customerTypeId: 2, customerTypeName: 'Vip'
+    id: 2, customerTypeName: 'Vip'
   },
     {
-      customerTypeId: 3, customerTypeName: 'Chuyên gia'
+      id: 3, customerTypeName: 'Chuyên gia'
     }];
 
   constructor() {

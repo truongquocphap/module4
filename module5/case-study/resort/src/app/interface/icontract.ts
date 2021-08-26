@@ -1,10 +1,14 @@
+import {IService} from "./iservice";
+import {ICustomer} from "./icustomer";
+import {IEmployee} from "./IEmployee";
+
 export interface IContract {
-  contractId?: number;
+  id?: number;
   contractStartDate?: string;
   contractEndDate?: string;
   contractDeposit?: number;
   contractTotalMoney?: number;
-  serviceId?: number;
-  customerId?: number;
-  employeeId?: number;
+  service?: IService;
+  customer?: ICustomer;
+  employee?: IEmployee;
 }
